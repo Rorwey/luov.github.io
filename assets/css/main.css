@@ -186,7 +186,8 @@
 		transform: translate3d(0,0,0);
 	/* Set your background with this */
 
-		background: #348cb2 url("images/bg.jpg") bottom left;
+		background: #0222ca  url("images/bg.jpg") bottom left;
+		/*#348cb2  bg5 4998c3*/
 		background-repeat: repeat-x;
 		height: 100%;
 		left: 0;
