@@ -3,7 +3,8 @@
  * 公共部分
  * ------------------------------------------------- */
 body {
-  background: #e5e5e5 url(../../assets/images/background.png);
+  /* background: #e5e5e5 url(../../assets/images/background.png); */
+  background: #e5e5e5 url(https://i.loli.net/2018/09/13/5b9a421ed9a2a.jpg);
   width: 100%;
   overflow-x: hidden;
   padding: 1rem 10%;
