@@ -29,6 +29,25 @@
 		</script>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!-- 添加一言 -->
+		<!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+		<script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+		<!--End-->
+		<script>
+			fetch('https://v1.hitokoto.cn')
+				.then(function(res) {
+					return res.json();
+				})
+				.then(function(data) {
+					var hitokoto = document.getElementById('hitokoto');
+					hitokoto.innerText = data.hitokoto;
+				})
+				.catch(function(err) {
+					console.error(err);
+				})
+		</script>
+		<!--一言End-->
 	</head>
 
 	<body class="loading">
@@ -40,7 +59,7 @@
 				<!-- Header -->
 				<header id="header">
 					<h1>Luo V</h1>
-					<p>Eternal charm,&nbsp; Endless sound.</p>
+					<p id="hitokoto" style="font-family: Kaiti;">Eternal charm,&nbsp; Endless sound.</p>
 					<nav>
 						<ul>
 							<li>
@@ -70,7 +89,8 @@
 					<span class="copyright">&copy; 2018 &nbsp; <a href="http://luov.top">luov.top</a> &nbsp;All	Rights Reserved<br />
 					<span style="font-size:80%;">赣ICP备<a href="http://www.miitbeian.gov.cn/">18012283</a>号&nbsp;
 		 			<span style="padding-left:25px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow" >赣公网安备<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=36010202000163" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
- 36010202000163</a>号</span></span></span>
+ 36010202000163</a>号</span></span>
+					</span>
 				</footer>
 
 			</div>
