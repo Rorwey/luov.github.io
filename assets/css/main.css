@@ -187,7 +187,8 @@
 		transform: translate3d(0,0,0);
 	/* Set your background with this */
 
-		background: #0222ca  url("https://i.loli.net/2018/09/13/5b9a421ed9a2a.jpg") bottom left;/*主背景*/
+		/* background: #0222ca  url("https://i.loli.net/2018/09/13/5b9a421ed9a2a.jpg") bottom left;/*主背景 */
+		background: #0222ca  url("https://s2.ax1x.com/2019/05/09/EgeuOP.jpg") bottom left;/*主背景*/
 		/* background: #b80305  url("https://s2.ax1x.com/2019/01/28/kMUNkj.jpg") bottom left;2019猪年春节 */
 		/* background: #2f9abe  url("https://s1.ax1x.com/2018/12/20/FryWhd.jpg") bottom left;圣诞节 */
 		/*#348cb2  bg5 4998c3*/
