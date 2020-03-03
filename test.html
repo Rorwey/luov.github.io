@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .cont{
+      margin: 0 auto;
+      position: relative;
+    }
+    .box{
+      float: left;
+      padding: 6px;
+    }
+    .imgbox{
+      border: 1px black solid;
+      border-radius: 6px;
+      padding: 6px;
+    }
+    .imgbox img{
+      width: 350px;
+      display: block;
+    }
+    .imgbox .userInfo {
+        padding: 0px 5px;
+        text-align: center;
+    }
+    .imgbox p{
+        /* font-size: 13px; */
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+    }
+  </style>
+  <script>
+     onload = function () {
+       new Waterfall();
+     };
+     function Waterfall() {
+       this.ocont = document.querySelector(".cont");
+       this.abox = document.querySelectorAll(".box");
+       this.heightArr = [];
+       this.init();
+ 
+       //w1准备数据
+       this.data = this.load();
+       this.addScroll();
+     }
+     Waterfall.prototype.load = function(){
+       return [{img:"assets/images/alipay.jpg"},{img:"assets/images/alihongbao.jpg"},{img:"assets/images/wechatpay.jpg"},{img:"assets/images/wechatreware.jpg"},{img:"assets/images/qqpay.png"},]
+     };
+     Waterfall.prototype.addScroll = function(){
+       var that = this;
+       onscroll = function () {
+         if (that.isBottom()){
+           that.data.forEach(val=>{
+             var img = document.createElement("img");
+             img.src = val.img;
+             var imgbox = document.createElement("div");
+             imgbox.className = "imgbox";
+			 var userInfo = document.createElement("div");
+			 userInfo.className="userInfo";
+             var box = document.createElement("div");
+             box.className = "box";
+             imgbox.appendChild(img);
+			 imgbox.appendChild(userInfo);
+			 var box = document.createElement("div");
+             box.appendChild(imgbox);
+             that.ocont.appendChild(box);
+           });
+           that.abox = document.querySelectorAll(".box");
+           that.heightArr = [];
+           that.firstLine();
+           that.otherLine();
+         }
+       }
+     };
+     Waterfall.prototype.isBottom = function(){
+       var clientH = document.documentElement.clientHeight;
+       var scrollT = document.documentElement.scrollTop;
+       var scrollH = document.documentElement.scrollHeight;
+       if (clientH + scrollT >= scrollH-200){
+         return true;
+       }else{
+         return false;
+       }
+     };
+     Waterfall.prototype.init = function () {
+       this.num = Math.floor(document.documentElement.clientWidth/this.abox[0].offsetWidth);
+       this.ocont.style.width = this.num*this.abox[0].offsetWidth+"px";
+       //区分第一行
+       this.firstLine();
+       //区分最后一行
+       this.otherLine();
+     };
+     Waterfall.prototype.firstLine = function () {
+       for (var i=0;i<this.num;i++){
+         this.heightArr.push(this.abox[i].offsetHeight);
+       }
+     };
+     Waterfall.prototype.otherLine = function () {
+       for (var i=this.num;i<this.abox.length;i++){
+         var min = getMin(this.heightArr);
+         var minIndex = this.heightArr.indexOf(min);
+         //设置定位，left，top
+         this.abox[i].style.position = "absolute";
+         this.abox[i].style.top = min + "px";
+         this.abox[i].style.left = minIndex*this.abox[0].offsetWidth+"px";
+         this.heightArr[minIndex] += this.abox[i].offsetHeight;
+       }
+     };
+     function getMin(arr) {
+       var myarr = [];
+       arr.forEach(val =>{
+         myarr.push(val);
+       });
+       return myarr.sort((a,b)=>a-b)[0];
+     }
+  </script>
+</head>
+<body>
+<div class="cont">
+	<h1>精准扶贫</h1>
+  <div class="box">
+   <div class="imgbox">
+     <img src="assets/images/wechatreware.jpg" alt="">
+     <div class="userInfo">
+         <p>微信赞赏码</p>
+     </div>
+   </div>
+ </div>
+   <div class="box">
+     <div class="imgbox">
+       <img src="assets/images/wechatpay.jpg" alt="">
+       <div class="userInfo">
+         <p>微信支付码</p>
+       </div>
+     </div>
+   </div>
+   <div class="box">
+     <div class="imgbox">
+       <img src="assets/images/alihongbao.jpg" alt="">
+       <div class="userInfo">
+         <p>支付宝红包码</p>
+       </div>
+     </div>
+   </div>
+   <div class="box">
+     <div class="imgbox">
+       <img src="assets/images/alipay.jpg" alt="">
+ 	  <div class="userInfo">
+ 	    <p>支付宝付款码</p>
+ 	  </div>
+     </div>
+   </div>
+   <div class="box">
+     <div class="imgbox">
+       <img src="assets/images/qqpay.png" alt="">
+ 	  <div class="userInfo">
+ 	    <p>QQ付款码</p>
+ 	  </div>
+     </div>
+   </div>
+    <div class="box">
+     <div class="imgbox">
+       <img src="assets/images/wechatreware.jpg" alt="">
+       <div class="userInfo">
+           <p>微信赞赏码</p>
+       </div>
+     </div>
+   </div>
+     <div class="box">
+       <div class="imgbox">
+         <img src="assets/images/wechatpay.jpg" alt="">
+         <div class="userInfo">
+           <p>微信支付码</p>
+         </div>
+       </div>
+     </div>
+     <div class="box">
+       <div class="imgbox">
+         <img src="assets/images/alihongbao.jpg" alt="">
+         <div class="userInfo">
+           <p>支付宝红包码</p>
+         </div>
+       </div>
+     </div>
+     <div class="box">
+       <div class="imgbox">
+         <img src="assets/images/alipay.jpg" alt="">
+   	  <div class="userInfo">
+   	    <p>支付宝付款码</p>
+   	  </div>
+       </div>
+     </div>
+     <div class="box">
+       <div class="imgbox">
+         <img src="assets/images/qqpay.png" alt="">
+   	  <div class="userInfo">
+   	    <p>QQ付款码</p>
+   	  </div>
+       </div>
+     </div>
+</body>
+</html>
