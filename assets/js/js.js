@@ -7,3 +7,20 @@ function getJuzi() {
 	title.innerText = str[sign];
 }
 
+function getYear(){
+	var year0= 2018;
+	var date=new Date();
+	var year=date.getFullYear();
+	var str=year0;
+	if(year>year0){
+		str=year0+"-"+year;
+	}
+	else{
+
+	}
+	document.getElementById("year").innerHTML=str;
+}
+
+window.onload=function(){
+	getYear();
+}
