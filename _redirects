@@ -3,3 +3,4 @@
 # Redirect default Netlify subdomain to primary domain
 https://luov.netlify.com/* https://luov.top/:splat 301!
 https://luov.tk/* https://luov.top/:splat 301!
+https://reward.luov.top/* https://xian6ge.cn/about/reward  301!
