@@ -29,7 +29,7 @@ function loading() {
 window.onload=function(){
 	getYear();
 	console.log(document.getElementsByClassName('loading')[0].style.display|| '');
-	if(document.getElementsByClassName('loading')[0].style.display == 'block'||document.getElementsByClassName('loading')[0].style.display == 'block' ''){
+	if(document.getElementsByClassName('loading')[0].style.display == 'block'||document.getElementsByClassName('loading')[0].style.display == 'block'==''){
 		console.log("test");
 		loading();
 	}
