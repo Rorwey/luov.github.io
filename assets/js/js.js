@@ -28,6 +28,7 @@ function loading() {
 
 window.onload=function(){
 	getYear();
+	console.log(document.getElementsByClassName('loading')[0].style.display);
 	if(document.getElementsByClassName('loading')[0].style.display == 'block'){
 		console.log("test");
 		loading();
