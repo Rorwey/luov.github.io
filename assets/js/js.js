@@ -30,5 +30,6 @@ function loading() {
 
 window.onload=function(){
 	getYear();
+	loading();
 }
 
