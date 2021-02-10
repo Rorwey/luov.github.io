@@ -22,14 +22,16 @@ function getYear(){
 }
 
 function loading() {
-    console.log(document.getElementsByClassName('avatar')[0]);
-    console.log(document.getElementsByClassName('loading')[0]);
     document.getElementsByClassName('avatar')[0].style.display = 'block';  
     document.getElementsByClassName('loading')[0].style.display = 'none';          
 }
 
 window.onload=function(){
 	getYear();
-	loading();
+	if(document.getElementsByClassName('loading')[0].style.display == 'block'){
+		console.log("test");
+		loading();
+	}
+	
 }
 
