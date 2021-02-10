@@ -27,10 +27,9 @@ function loading() {
 }
 
 window.onload=function(){
-	getYear();
 	if(document.getElementsByClassName('loading')[0].style.display == 'block'||document.getElementsByClassName('loading')[0].style.display == 'block'==''){
 		loading();
 	}
-	
+	getYear();
 }
 
