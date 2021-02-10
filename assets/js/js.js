@@ -28,8 +28,7 @@ function loading() {
 
 window.onload=function(){
 	getYear();
-	if(document.getElementsByClassName('avatar')[0].style.display == 'none'){
-		console.log("头像出来了！");
+	if(document.getElementsByClassName('loading')[0].style.display == 'block'||document.getElementsByClassName('loading')[0].style.display == 'block'==''){
 		loading();
 	}
 	
