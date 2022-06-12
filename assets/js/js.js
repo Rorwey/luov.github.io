@@ -18,6 +18,7 @@ function getYear() {
 	else {
 
 	}
+	console.log(document.getElementById("year"))
 	document.getElementById("year").innerHTML = str;
 }
 
