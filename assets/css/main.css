@@ -188,9 +188,11 @@
 	/* Set your background with this */
 
 		/* background: #0222ca  url("https://i.loli.net/2018/09/13/5b9a421ed9a2a.jpg") bottom left;/*主背景 */
-		background: #0222ca  url("https://cdn.jsdelivr.net/gh/Rorwey/ImgsHome@main/20220612/bg.57ev9cpia7s0.webp") bottom left;/*主背景*/
+		/* background: #0222ca  url("https://cdn.jsdelivr.net/gh/Rorwey/ImgsHome@main/20220612/bg.57ev9cpia7s0.webp") bottom left;主背景 */
 		/* background: #b80305  url("https://s2.ax1x.com/2019/01/28/kMUNkj.jpg") bottom left;2019猪年春节 */
 		/* background: #2f9abe  url("https://s1.ax1x.com/2018/12/20/FryWhd.jpg") bottom left;圣诞节 */
+		/*background: #0222ca  url("https://cdn.jsdelivr.net/gh/Rorwey/ImgsHome@main/20220627/bgf.11th7lztgwg0.webp") bottom left;主背景,镜像 */
+		background: #0222ca  url("https://tucang.cc/api/image/show/fa4e78d85760e0b7fb981d54dae43e18") bottom left;/*主背景,镜像，和上面一样 */
 		/*#348cb2  bg5 4998c3*/
 		background-repeat: repeat-x;
 		height: 100%;
