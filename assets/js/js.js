@@ -18,7 +18,7 @@ function getYear() {
 	else {
 
 	}
-	console.log(document.getElementById("year"))
+	// console.log(document.getElementById("year"))
 	document.getElementById("year").innerHTML = str;
 }
 
@@ -27,10 +27,21 @@ function loading() {
 	document.getElementsByClassName('loading')[0].style.display = 'none';
 }
 
+function setOlds(){
+	var birth = 1995;
+	var year = date.getFullYear();
+	if (year > birth) {
+		str = year-birth;
+	}
+	console.log(document.getElementById("old"))
+	document.getElementById("old").innerHTML = str;
+}
+
 window.onload = function () {
 	if (document.getElementsByClassName('loading')[0].style.display == 'block' || document.getElementsByClassName('loading')[0].style.display == 'block' == '') {
 		loading();
 	}
 	getYear();
+	setOlds();
 }
 
