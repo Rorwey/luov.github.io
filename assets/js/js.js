@@ -9,8 +9,7 @@ function getJuzi() {
 
 function getYear() {
 	var year0 = 2018;
-	var date = new Date();
-	var year = date.getFullYear();
+	var year = new Date().getFullYear();
 	var str = year0;
 	if (year > year0) {
 		str = year0 + "-" + year;
@@ -29,10 +28,11 @@ function loading() {
 
 function setOlds(){
 	var birth = 1995;
-	var year = date.getFullYear();
+	var year = new Date().getFullYear();
 	if (year > birth) {
 		str = year-birth;
 	}
+	console.log(str)
 	console.log(document.getElementById("old"))
 	document.getElementById("old").innerHTML = str;
 }
