@@ -30,10 +30,8 @@ function setOlds(){
 	var birth = 1995;
 	var year = new Date().getFullYear();
 	if (year > birth) {
-		str = year-birth;
+		str = '/ '+year-birth+'岁';
 	}
-	console.log(str)
-	console.log(document.getElementById("old"))
 	document.getElementById("old").innerHTML = str;
 }
 
