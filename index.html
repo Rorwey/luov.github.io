@@ -1,122 +1,114 @@
 <!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
-	<head>
-		<title>Mr.Luo - LuoV的个人主页</title>
-		<meta charset="utf-8" />
-		<link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="assets/images/icon/favicon-16x16.png">
-		<link rel="manifest" href="assets/images/icon/site.webmanifest">
-		<link rel="mask-icon" href="assets/images/icon/safari-pinned-tab.svg" color="#5bbad5">
-		<meta name="msapplication-TileColor" content="#da532c">
-		<meta name="theme-color" content="#ffffff">
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<script type="text/javascript" src="/assets/js/js.js"></script>
-		<!-- CNZZ访问统计	 -->
-		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-			document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1273497846'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1273497846' type='text/javascript'%3E%3C/script%3E"));
-		</script>
-		<!-- 百度访问统计 -->
-		<script>
-			var _hmt = _hmt || [];
-			(function() {
-				var hm = document.createElement("script");
-				hm.src = "https://hm.baidu.com/hm.js?ab45b5415b868a06333051259d28eccc";
-				var s = document.getElementsByTagName("script")[0];
-				s.parentNode.insertBefore(hm, s);
-			})();
-		</script>
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!-- 添加一言 -->
-		<!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
-		<script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
-		<!--End-->
-		<script>
-			fetch('https://v1.hitokoto.cn')
-				.then(function(res) {
-					return res.json();
-				})
-				.then(function(data) {
-					var hitokoto = document.getElementById('hitokoto');
-					hitokoto.innerText = data.hitokoto;
-				})
-				.catch(function(err) {
-					console.error(err);
-				})
-		</script>
-		<!--一言End-->
-	</head>
+<head>
+    <title>Mr.Luo - LuoV的个人主页</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icon/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/icon/site.webmanifest">
+    <link rel="mask-icon" href="assets/images/icon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-	<body class="loading">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-				<!-- Header -->
-				<header id="header">
-					<a href="//time.luov.top">
-					<h1>LuoV</h1>
-						<p id="hitokoto" style="font-family: Kaiti;">Eternal charm,&nbsp; Endless sound.</p>
-					</a>
-					<nav>
-						<ul>							
-							<li>
-								<a href="http://weibo.com/rorwey" class="icon fa-weibo" title="Weibo"><span class="label">Weibo</span></a>
-							</li>
-							<li>
-								<!-- <a href="https://www.facebook.com/rorwey" class="icon fa-facebook" title="Facebook"><span class="label">Facebook</span></a> -->
-								<a href="https://user.qzone.qq.com/1004425708" class="icon fa-spinner" title="QZone"><span class="label">QZone</span></a>
-							</li>
-							<li>
-								<a href="http://xian6ge.cn" class="icon fa-envira" title="Blog"><span class="label">Blog</span></a>
-							</li>
-							<li>
-								<a href="https://www.zhihu.com/people/LuoV" class="icon fa-quora" title="Zhihu"><span class="label">Zhihu</span></a>
-							</li>
-							<li>
-								<a href="https://github.com/Rorwey" class="icon fa-github" title="Github"><span class="label">Github</span></a>
-							</li>
-							<li>
-								<a href="resume" class="icon fa-file-text-o" title="Resume"><span class="label">Resume</span></a>
-							</li>
-						</ul>
-					</nav>
-				</header>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?ab45b5415b868a06333051259d28eccc";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
 
-				<!-- Footer -->
-				<footer id="footer">
-					<span class="copyright">&copy; <q id="year">2018-2020</q>&nbsp; <a href="http://luov.top">luov.top</a> &nbsp;All	Rights Reserved<br />
-					<!-- <span style="font-size:80%;">赣ICP备<a href="http://beian.miit.gov.cn/">18012283</a>号-2&nbsp;
-		 			<span style="padding-left:25px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow" >赣公网安备<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=36010202000163" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
- 36010202000163</a>号</span></span> -->
-					</span>
-				</footer>
+<body class="loading">
+    <div id="wrapper">
+        <div id="bg"></div>
+        <div id="overlay"></div>
+        <div id="main">
 
-			</div>
-		</div>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-		<script>
-			window.onload = function() {
-				document.body.className = '';
-			}
-			window.ontouchmove = function() {
-				return false;
-			}
-			window.onorientationchange = function() {
-				document.body.scrollTop = 0;
-			}
-		</script>
-	</body>
+            <header id="header">
+                <a href="//time.luov.top">
+                    <h1>LuoV</h1>
+                </a>
+                <p style="font-family: Kaiti; margin-top: 10px;">
+                    <a href="#" id="hitokoto_text" style="text-decoration: none; color: inherit; border-bottom: none;">
+                        Eternal charm,&nbsp; Endless sound.
+                    </a>
+                </p>
+
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="https://weibo.com/rorwey" class="icon fa-weibo" title="Weibo"><span class="label">Weibo</span></a>
+                        </li>
+                        <li>
+                            <a href="https://user.qzone.qq.com/1004425708" class="icon fa-spinner" title="QZone"><span class="label">QZone</span></a>
+                        </li>
+                        <li>
+                            <a href="http://xian6ge.cn" class="icon fa-envira" title="Blog"><span class="label">Blog</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.zhihu.com/people/LuoV" class="icon fa-quora" title="Zhihu"><span class="label">Zhihu</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Rorwey" class="icon fa-github" title="Github"><span class="label">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="resume" class="icon fa-file-text-o" title="Resume"><span class="label">Resume</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <footer id="footer">
+                <span class="copyright">&copy; <q id="year">2018-2025</q>&nbsp; <a href="http://luov.top">luov.top</a> &nbsp;All Rights Reserved<br /></span>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            document.body.className = '';
+            var currentYear = new Date().getFullYear();
+            document.getElementById('year').innerText = '2018-' + currentYear;
+        }
+        window.ontouchmove = function() { return false; }
+        window.onorientationchange = function() { document.body.scrollTop = 0; }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+    
+    <script>
+        fetch('https://v1.hitokoto.cn')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var hitokoto = document.getElementById('hitokoto_text');
+                // 设置链接跳转到一言出处
+                hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid;
+                // 设置文本内容
+                hitokoto.innerText = data.hitokoto;
+                
+                // 如果有来源，你也可以选择显示来源，例如：
+                // if(data.from) { hitokoto.innerText += " —— " + data.from; }
+            })
+            .catch(function(err) {
+                console.error('一言获取失败:', err);
+            });
+    </script>
+    
+    <script type="text/javascript" src="/assets/js/js.js"></script>
+</body>
 
 </html>

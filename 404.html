@@ -1,77 +1,92 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
-	<head>
-		<title>Custom Error Page A Flat Responsive Widget Template :: w3layouts</title>
-		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="bookmark" href="favicon.ico" />
-		<link href="/assets/css/style.css" rel='stylesheet' type='text/css' />
-		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-		<link href="//fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="Custom Error Page Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
-		<script type="text/javascript" src="/assets/js/js.js"></script>
-		<!-- 添加一言 -->
-		<!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
-		<script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
-		<!--End-->
-		<script>
-			fetch('https://v1.hitokoto.cn')
-				.then(function(res) {
-					return res.json();
-				})
-				.then(function(data) {
-					var hitokoto = document.getElementById('title');
-					hitokoto.innerText = data.hitokoto;
-				})
-				.catch(function(err) {
-					console.error(err);
-				})
-		</script>
-		<!--一言End-->
-	</head>
+<head>
+    <title>404 - Page Not Found :: Mr.Luo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="404, Error Page, Mr.Luo" />
+    
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="bookmark" href="favicon.ico" />
+    
+    <link href="/assets/css/style.css" rel='stylesheet' type='text/css' />
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
+</head>
 
-	<body>
-		<div class="top-bar-agile">
-			<div class="logo-agileits">
-				<a href="/"><img src="https://s2.ax1x.com/2019/07/23/eAAmxe.png" alt="Mr.Luo" /></a>
-			</div>
-			<div class="nav-agileinfo">
-				<ul>
-					<li>
-						<a href="/resume.html">Resume</a>
-					</li>
-					<li>
-						<a href="https://xian6ge.cn">Blog</a>
-					</li>
-					<li>
-						<a href="https://time.luov.top">Time</a>
-					</li>
-					<li>
-						<a href="https://love.luov.top">Love</a>
-					</li>
-				</ul>
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="content-w3">
-			<h1>404</h1>
-			<h2 id="title" style="font-family: Kaiti;"></h2>
-		<!-- <p>The page you are looking for has been removed,had its name changed or temporarily unavailable</p> -->
-		<p><button class=" info " onclick="javascript:history.back(-1); ">上一页</button>&nbsp;&nbsp;<a href="/ "><button class="info ">到首页</button></a></p>
-	</div>
-	<div class="footer-w3ls ">
-		<p> &copy; <span id="year"></span> 
-			<a href="https://luov.top ">Mr.Luo</a>. All Rights Reserved. | Design by 
-			<a href="http://w3layouts.com ">W3layouts</a>
-		</p>
-	</div>
+<body>
+    <div class="top-bar-agile">
+        <div class="logo-agileits">
+            <a href="/"><img src="https://s2.ax1x.com/2019/07/23/eAAmxe.png" alt="Mr.Luo" /></a>
+        </div>
+        <div class="nav-agileinfo">
+            <ul>
+                <li><a href="/resume.html">Resume</a></li>
+                <li><a href="https://xian6ge.cn">Blog</a></li>
+                <li><a href="https://time.luov.top">Time</a></li>
+                <li><a href="https://love.luov.top">Love</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="content-w3">
+        <h1>404</h1>
+        <h2 style="font-family: Kaiti; margin-top: 20px;">
+            <a id="hitokoto_text" href="#" style="text-decoration: none; color: inherit; cursor: pointer;">
+                Loading...
+            </a>
+        </h2>
+        
+        <p style="margin-top: 30px;">
+            <button class="info" onclick="history.back()">上一页</button>
+            &nbsp;&nbsp;
+            <button class="info" onclick="window.location.href='/'">到首页</button>
+        </p>
+    </div>
+
+    <div class="footer-w3ls">
+        <p> &copy; <span id="year">2019-2025</span> 
+            <a href="https://luov.top">Mr.Luo</a>. All Rights Reserved. | Design by 
+            <a href="http://w3layouts.com">W3layouts</a>
+        </p>
+    </div>
+
+    <script type="text/javascript" src="/assets/js/js.js"></script>
+
+    <script>
+        // 1. 自动更新页脚年份
+        window.onload = function() {
+            var currentYear = new Date().getFullYear();
+            var yearSpan = document.getElementById('year');
+            if(yearSpan) {
+                yearSpan.innerText = '2019-' + currentYear;
+            }
+        }
+
+        // 2. 获取一言 (使用 fetch API)
+        fetch('https://v1.hitokoto.cn')
+            .then(function(res) {
+                return res.json();
+            })
+            .then(function(data) {
+                var hitokoto = document.getElementById('hitokoto_text');
+                if (hitokoto) {
+                    hitokoto.innerText = data.hitokoto;
+                    // 设置点击跳转到该句子的出处
+                    hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid;
+                    hitokoto.title = "点击查看出处";
+                    // 如果有来源，也可以拼接显示： hitokoto.innerText = data.hitokoto + " —— " + data.from;
+                }
+            })
+            .catch(function(err) {
+                console.error('一言获取失败', err);
+                // 失败时的默认文案
+                var hitokoto = document.getElementById('hitokoto_text');
+                if (hitokoto) hitokoto.innerText = "Page not found, but life goes on.";
+            });
+    </script>
 </body>
+</html>
