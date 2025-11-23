@@ -5,25 +5,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wei Luo | Ph.D. Student</title>
-    <meta name="description"
-        content="Wei Luo is a Ph.D. Student at Central South University, focusing on Computer Vision and Edge Computing." />
+    <meta name="description" content="Wei Luo is a Ph.D. Student at Central South University." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
         :root {
             --primary-color: #0056b3;
-            /* Academic Blue */
+            --primary-dark: #003d80;
             --text-color: #333;
-            --light-text: #666;
+            --text-light: #666;
             --bg-color: #fff;
-            --section-bg: #f9f9f9;
+            --hover-bg: #f8faff;
             --border-color: #eaeaea;
+            --badge-bg: #eef4fc;
+            --badge-text: #0056b3;
         }
 
         * {
@@ -35,17 +34,14 @@
         body {
             font-family: "Lato", sans-serif;
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.5;
             background-color: var(--bg-color);
+            padding-top: 60px;
         }
 
-        h1,
-        h2,
-        h3,
-        h4 {
+        h1, h2, h3, h4 {
             font-family: "Merriweather", serif;
             color: #111;
-            margin-bottom: 0.5em;
         }
 
         a {
@@ -55,184 +51,254 @@
         }
 
         a:hover {
-            color: #003d80;
+            color: var(--primary-dark);
             text-decoration: underline;
         }
 
         .container {
-            max-width: 960px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Header / Nav */
+        /* --- Header --- */
         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 40px;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 900;
             font-family: "Merriweather", serif;
         }
 
         .nav-links a {
             margin-left: 20px;
-            font-weight: 400;
-            color: var(--text-color);
+            font-size: 0.95rem;
+            color: #444;
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
         }
-
-        .lang-btn {
-            border: 1px solid var(--border-color);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.9rem;
+        .lang-switch {
+            font-size: 0.9rem; 
+            border: 1px solid #eee; 
+            padding: 4px 10px; 
+            border-radius: 15px;
         }
-
-        /* Profile Section */
-        .profile-section {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .profile-img img {
-            width: 100%;
-            border-radius: 50%;
-            /* Circular avatar */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            object-fit: cover;
-        }
-
-        .profile-info h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.2em;
-        }
-
-        .profile-title {
-            font-size: 1.2rem;
-            color: var(--light-text);
-            margin-bottom: 1em;
-        }
-
-        .social-links {
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: #555;
-        }
-
-        .social-links a:hover {
+        
+        .lang-switch:hover {
+            text-decoration: none;
+            border-color: var(--primary-color);
             color: var(--primary-color);
         }
-
-        /* Sections General */
+        /* --- Layout & Sections --- */
         section {
-            margin-bottom: 50px;
+            margin-bottom: 40px;
+            scroll-margin-top: 80px;
         }
 
         .section-title {
             font-size: 1.5rem;
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        /* Education */
-        .edu-item {
-            margin-bottom: 20px;
+        /* --- Profile (Home) --- */
+        .profile-section {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 50px;
         }
 
+        .profile-img img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
+
+        .profile-info h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.3rem;
+            margin-right: 15px;
+            color: #555;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- List Items (Shared) --- */
+        .list-item {
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid transparent;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .list-item:hover {
+            border-left-color: var(--primary-color);
+            background-color: var(--hover-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        /* --- Education --- */
         .edu-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
+            margin-bottom: 2px;
         }
 
         .edu-school {
             font-weight: 700;
             font-size: 1.1rem;
+            color: #222;
         }
 
         .edu-time {
-            color: var(--light-text);
             font-size: 0.9rem;
-            font-family: "Lato", sans-serif;
+            color: var(--text-light);
         }
 
         .edu-degree {
+            font-weight: 600;
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .edu-meta {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- Publications --- */
+        .pub-note {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
             font-style: italic;
         }
 
-        /* Publications */
-        .pub-item {
-            margin-bottom: 25px;
-            padding-left: 15px;
-            border-left: 3px solid var(--border-color);
+        .pub-title-row {
+            margin-bottom: 4px;
         }
 
         .pub-title {
             font-weight: 700;
-            display: block;
-            margin-bottom: 4px;
+            font-size: 1.05rem;
+            color: #000;
         }
 
-        .pub-authors {
-            color: var(--text-color);
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .pub-venue {
-            font-style: italic;
+        .pub-link-icon {
+            font-size: 0.85rem;
+            margin-left: 8px;
             color: var(--primary-color);
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .pub-link-icon:hover {
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .pub-meta-row {
             font-size: 0.95rem;
+            color: #444;
+            line-height: 1.4;
         }
 
         .me-highlight {
             font-weight: 700;
             text-decoration: underline;
-            color: #000;
         }
 
-        /* Small envelope icon for corresponding author */
-        .corresp-icon {
-            font-size: 0.8em;
-            vertical-align: super;
-            color: #555;
-            margin-left: 2px;
+        .pub-venue {
+            font-style: italic;
+            color: var(--primary-color);
         }
 
-        .scholar-link {
+        .badge {
             display: inline-block;
-            margin-top: 10px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
             font-weight: 700;
+            margin-left: 5px;
+            vertical-align: middle;
         }
 
-        /* Service & Activities List */
+        .badge-gray {
+            display: inline-block;
+            background: #f0f0f0; /* 浅灰色背景，柔和不抢眼 */
+            color: #666666; /* 深灰色文字，保证可读性但不突出 */
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 5px;
+            vertical-align: middle;
+            /* 可选：增加边框强化层次感但不突兀 */
+            border: 1px solid #e0e0e0;
+        }
+
+        .corresp-icon {
+            font-size: 0.7em;
+            vertical-align: top;
+            color: #777;
+        }
+
+        /* --- Service --- */
         .service-list {
-            list-style-type: none;
+            list-style: none;
+            padding-left: 10px;
         }
-
         .service-list li {
-            margin-bottom: 10px;
             position: relative;
             padding-left: 20px;
+            margin-bottom: 5px;
         }
-
         .service-list li::before {
             content: "•";
             color: var(--primary-color);
@@ -241,73 +307,172 @@
             font-weight: bold;
         }
 
-        /* Footer */
+        /* --- Footer (Web Default) --- */
         footer {
             text-align: center;
-            padding: 40px 0;
-            color: var(--light-text);
+            margin-top: 40px;
+            padding: 30px 0;
             font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+        
+        .footer-content-print {
+            display: none; /* Hide print version by default */
         }
 
-        /* Responsive */
+        /* --- Print Hint --- */
+        .print-hint {
+            margin-top: 40px;
+            padding: 10px;
+            background-color: #f0f7ff;
+            color: #555;
+            font-size: 0.9rem;
+            border: 1px dashed #cce5ff;
+            border-radius: 6px;
+        }
+
+        /* --- Responsive (Mobile) --- */
         @media (max-width: 768px) {
             .profile-section {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 text-align: center;
             }
-
-            .profile-img {
-                width: 150px;
-                margin: 0 auto;
-            }
-
             .edu-header {
                 flex-direction: column;
+            }
+            .list-item {
+                padding: 10px 5px;
+            }
+        }
+
+        /* --- Print Optimization --- */
+        @media print {
+            /* 1. 隐藏不需要的元素 */
+            header, .lang-btn, .scholar-link-container, .print-hint {
+                display: none !important;
+            }
+
+            body {
+                padding-top: 0;
+                background-color: #fff;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            /* 2. 强制修复布局 */
+            .profile-section {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: flex-start !important;
+                gap: 30px !important;
+                margin-bottom: 25px;
+                page-break-inside: avoid;
+            }
+            
+            .profile-img img {
+                width: 140px !important;
+                height: 140px !important;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .profile-info {
+                text-align: left !important;
+                padding-top: 10px;
+            }
+            
+            .profile-info h1 {
+                margin-top: 0;
+                font-size: 2.2rem;
+            }
+
+            /* 3. 清除所有边框和背景，解决竖线杂质问题 */
+            .list-item {
+                padding: 0 !important;
+                margin-bottom: 10px !important;
+                border: none !important; /* 关键：移除左侧边框 */
+                background-color: transparent !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+
+            a {
+                text-decoration: none;
+                color: var(--primary-color) !important; 
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+            /* 4. 页脚特定样式：左右布局，顶部横线 */
+            footer {
+                margin-top: 20px !important;
+                border-top: 1px solid #000 !important; /* 打印时横线更明显 */
+                padding-top: 10px !important;
+                padding-bottom: 0 !important;
+                color: #000 !important;
+            }
+            
+            /* 隐藏网页版页脚内容，显示打印版页脚内容 */
+            .footer-content-web { display: none; }
+            .footer-content-print { 
+                display: flex !important; 
+                justify-content: space-between; 
+                font-size: 0.85rem;
+                font-weight: 500;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <header>
+    <header>
+        <div class="header-content">
             <div class="logo">Wei Luo</div>
             <nav class="nav-links">
                 <a href="#bio">Home</a>
+                <a href="#education">Education</a>
                 <a href="#publications">Publications</a>
                 <a href="#service">Activities</a>
-                <a href="cn.html" class="lang-btn"><i class="fas fa-language"></i> 中文版本</a>
+                <a href="cn.html" class="lang-switch"><i class="fas fa-language"></i>&nbsp;&nbsp;中文</a>
             </nav>
-        </header>
+        </div>
+    </header>
 
+    <div class="container">
+        
         <section id="bio" class="profile-section">
             <div class="profile-img">
-                <img src="https://cdn.jsdelivr.net/gh/Rorwey/ImgsHome@main/20220612/avatar.6ev9ip3ahuk0.webp"
-                    alt="Wei Luo" />
+                <img src="https://cdn.jsdelivr.net/gh/Rorwey/ImgsHome@main/20220612/avatar.6ev9ip3ahuk0.webp" alt="Wei Luo" />
             </div>
             <div class="profile-info">
                 <h1>Wei Luo (罗威)</h1>
                 <div class="profile-title">Ph.D. Student in Computer Science</div>
                 <p>
-                    I am currently a Ph.D. Student at the
-                    <a href="https://www.csu.edu.cn/" target="_blank">Central South University (CSU)</a>, advised by
-                    Assoc. Prof.
-                    <a href="https://faculty.csu.edu.cn/zhangdeyu/zh_CN/index.htm" target="_blank">Deyu Zhang</a>.
+                    I am currently a Ph.D. Student at <a href="https://www.csu.edu.cn/" target="_blank">Central South University (CSU)</a>, 
+                    advised by Assoc. Prof. <a href="https://faculty.csu.edu.cn/zhangdeyu/zh_CN/index.htm" target="_blank">Deyu Zhang</a>.
                 </p>
-                <p style="margin-top: 10px">
-                    My research interests lie in <strong>Computer Vision</strong> and
-                    <strong>Edge Computing</strong>, with a specific focus on real-time
-                    action recognition, object tracking, and video analysis on
-                    resource-constrained edge devices.
+                <p style="margin-top: 8px;">
+                    My research interests lie in <strong>Computer Vision</strong> and <strong>Edge Computing</strong>, 
+                    specifically real-time action recognition and video analysis on resource-constrained devices.
                 </p>
 
                 <div class="social-links">
-                    <a href="mailto:rorwey@foxmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://github.com/rorwey" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://scholar.google.com/citations?hl=zh-CN&user=RImdKpAAAAAJ" target="_blank"
-                        title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://luov.top" target="_blank" title="Personal Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:rorwey@foxmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/rorwey" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://scholar.google.com/citations?hl=zh-CN&user=RImdKpAAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://luov.top" target="_blank"><i class="fas fa-globe"></i></a>
                 </div>
             </div>
         </section>
@@ -315,145 +480,134 @@
         <section id="education">
             <h2 class="section-title">Education</h2>
 
-            <div class="edu-item">
+            <div class="list-item">
                 <div class="edu-header">
                     <span class="edu-school">Central South University</span>
                     <span class="edu-time">Sep. 2020 - Present</span>
                 </div>
-                <div class="edu-degree">
-                    Ph.D. Student in Computer Science and Technology
-                </div>
-                <div>
-                    Advisor: Assoc. Prof.
-                    <a href="https://faculty.csu.edu.cn/zhangdeyu/zh_CN/index.htm" target="_blank">Deyu Zhang</a>
-                </div>
-                <div>
-                    Focus: Computer Vision, Edge Computing, & Human Activity Analysis
+                <div class="edu-degree">Ph.D. Student in Computer Science and Technology</div>
+                <div class="edu-meta">
+                    Advisor: Assoc. Prof. <a
+                            href="https://faculty.csu.edu.cn/zhangdeyu/zh_CN/index.htm" target="_blank"
+                            class="supervisor-link">Deyu Zhang</a> &nbsp;|&nbsp; Focus: Computer Vision, Edge Computing
                 </div>
             </div>
 
-            <div class="edu-item">
+            <div class="list-item">
                 <div class="edu-header">
                     <span class="edu-school">Nanchang University</span>
                     <span class="edu-time">Sep. 2017 - Jun. 2020</span>
                 </div>
                 <div class="edu-degree">M.E. in Computer Science and Technology</div>
-                <div>
-                    Advisor: Assoc. Prof.
-                    <a href="https://chgcxy.ecut.edu.cn/c6/29/c9247a116265/page.htm" target="_blank">Famao Ye</a>
+                <div class="edu-meta">
+                    Advisor: Assoc. Prof. <a
+                            href="https://chgcxy.ecut.edu.cn/c6/29/c9247a116265/page.htm" target="_blank"
+                            class="supervisor-link">Famao Ye</a> &nbsp;|&nbsp; Focus: Remote Sensing Image Registration
                 </div>
-                <div>Focus: Remote Sensing Image Registration & Retrieval</div>
             </div>
 
-            <div class="edu-item">
+            <div class="list-item">
                 <div class="edu-header">
                     <span class="edu-school">Nanchang University</span>
                     <span class="edu-time">Sep. 2013 - Jun. 2017</span>
                 </div>
-                <div class="edu-degree">
-                    B.Mgmt. in Information Management and Information Systems
-                </div>
+                <div class="edu-degree">B.Mgmt. in Information Management and Information Systems</div>
             </div>
         </section>
 
         <section id="publications">
             <h2 class="section-title">Selected Publications</h2>
-            <p style="margin-bottom: 20px; color: #666; font-size: 0.9rem">
-                Only First Author and Corresponding Author<i class="fas fa-envelope corresp-icon"></i>
-                papers are listed below.
-                <!-- <br> -->
-                <!-- (<i class="fas fa-envelope corresp-icon"></i> indicates Corresponding Author) -->
-            </p>
-
-            <div class="pub-item">
-                <span class="pub-title">EdgeOAR: Real-time Online Action Recognition On Edge Devices</span>
-                <span class="pub-authors">
-                    <span class="me-highlight">W. Luo</span>, D. Zhang, Y. Tang,
-                    <i>et al.</i>
-                </span>
-                <span class="pub-venue">IEEE Transactions on Mobile Computing (TMC), 2025. (CCF-A)</span>
-            </div>
-
-            <div class="pub-item">
-                <span class="pub-title">MBSeg: Real-Time Contour-Based Method Instance Segmentation for
-                    Egocentric Vision</span>
-                <span class="pub-authors">
-                    <span class="me-highlight">W. Luo</span>, D. Zhang, J. Zhang,
-                    <i>et al.</i>
-                </span>
-                <span class="pub-venue">IEEE Internet of Things Journal (IoTJ), 2024. (SCI Q1, IF:
-                    8.9)</span>
-            </div>
-
-            <div class="pub-item">
-                <span class="pub-title">MSA–HAR: Multi-scale Segmented Attention Networks for Human
-                    Activity Recognition Using Sensor Signals</span>
-                <span class="pub-authors">
-                    W. Quan, Y. Tang, <span class="me-highlight">W. Luo</span><i
-                        class="fas fa-envelope corresp-icon"></i>, <i>et al.</i>
-                </span>
-                <span class="pub-venue">The Journal of Supercomputing, 2025.</span>
-            </div>
-
-            <!-- <div class="pub-item">
-                <span class="pub-title">Content-Based Remote Sensing Image Retrieval Based on Fuzzy Rules
-                    and a Fuzzy Distance</span>
-                <span class="pub-authors">
-                    F. Ye, <span class="me-highlight">W. Luo</span>, M. Dong, D. Li, W.
-                    Min
-                </span>
-                <span class="pub-venue">IEEE Geoscience and Remote Sensing Letters(GRSL), 2020. (SCI Q3,
-                    IF: 4.4)</span>
-            </div>
-
-            <div class="pub-item">
-                <span class="pub-title">SAR Image Retrieval Based on Unsupervised Domain Adaptation and
-                    Clustering</span>
-                <span class="pub-authors">
-                    F. Ye, <span class="me-highlight">W. Luo</span>, M. Dong, H. He, W. Min
-                </span>
-                <span class="pub-venue">IEEE Geoscience and Remote Sensing Letters(GRSL), 2019. (SCI Q3, IF:
-                    4.4)</span>
-            </div> -->
             
+            <div class="pub-note">
+                <i class="fas fa-info-circle"></i> Only First Author and Corresponding Author papers are listed below.
+            </div>
+            
+            <div class="list-item pub-item">
+                <div class="pub-title-row">
+                    <span class="pub-title">EdgeOAR: Real-time Online Action Recognition On Edge Devices</span>
+                    <a href="#" class="pub-link-icon" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="pub-meta-row">
+                    <span class="me-highlight">W. Luo</span>, D. Zhang, Y. Tang, <i>et al.</i> 
+                    &nbsp;&mdash;&nbsp; 
+                    <span class="pub-venue">IEEE Transactions on Mobile Computing(TMC), 2025</span> 
+                    <span class="badge">SCI Q1</span><span class="badge">CCF-A</span>
+                </div>
+            </div>            
 
-            <div style="margin-top: 30px">
-                <a href="https://scholar.google.com/citations?hl=zh-CN&user=RImdKpAAAAAJ&view_op=list_works&sortby=pubdate"
-                    target="_blank" class="scholar-link">
-                    <i class="fas fa-external-link-alt"></i> View full list of
-                    publications on Google Scholar
+            <div class="list-item pub-item">
+                <div class="pub-title-row">
+                    <span class="pub-title">MSA–HAR: Multi-scale Segmented Attention Networks for Human Activity Recognition</span>
+                    <a href="#" class="pub-link-icon" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="pub-meta-row">
+                    W. Quan, Y. Tang, <span class="me-highlight">W. Luo</span><i class="fas fa-envelope corresp-icon"></i>, <i>et al.</i>
+                    &nbsp;&mdash;&nbsp; 
+                    <span class="pub-venue">The Journal of Supercomputing, 2025</span><span class="badge-gray">SCI Q3</span>
+                </div>
+            </div>
+
+            <div class="list-item pub-item">
+                <div class="pub-title-row">
+                    <span class="pub-title">MBSeg: Real-Time Contour-Based Method Instance Segmentation</span>
+                    <a href="#" class="pub-link-icon" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="pub-meta-row">
+                    <span class="me-highlight">W. Luo</span>, D. Zhang, J. Zhang, <i>et al.</i>
+                    &nbsp;&mdash;&nbsp; 
+                    <span class="pub-venue">IEEE Internet of Things Journal(IoT-J), 2024</span>
+                    <span class="badge">SCI Q1</span>
+                </div>
+            </div>
+
+            <div class="scholar-link-container" style="margin-top: 20px;">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=RImdKpAAAAAJ" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View full list on Google Scholar
                 </a>
             </div>
         </section>
 
         <section id="service">
             <h2 class="section-title">Professional Activities</h2>
-
-            <div style="margin-bottom: 20px">
-                <h3 style="font-size: 1.1rem; margin-bottom: 10px">
-                    Invited Reviewer
-                </h3>
-                <ul class="service-list">
-                    <li>
-                        IEEE Transactions on Biometrics, Behavior, and Identity Science
-                        (T-BIOM)
-                    </li>
-                </ul>
-            </div>
+            <ul class="service-list">
+                <li><strong>Invited Reviewer:</strong> IEEE Transactions on Biometrics, Behavior, and Identity Science (T-BIOM)</li>
+            </ul>
         </section>
 
+        <div class="print-hint" style="display: flex; align-items: center; justify-content: space-between; text-align: left; gap: 30px;">
+            <div>
+                <div style="font-weight: bold; color: #222; margin-bottom: 5px;">
+                    <i class="fas fa-file-pdf" style="color: var(--primary-color);"></i> 
+                    Save as PDF / Print Resume
+                </div>
+                <div style="font-size: 0.9rem; color: #555; line-height: 1.4;">
+                    This page is optimized for printing.
+                    <br>
+                    <span style="color: #c82333;">
+                        <i class="fas fa-exclamation-circle"></i> 
+                        <strong>Important:</strong> Please <u>uncheck "Headers and footers"</u> in your print settings.
+                    </span>
+                </div>
+            </div>
+            <button onclick="window.print()" style="background-color: var(--primary-color); color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; white-space: nowrap; transition: background 0.2s;" onmouseover="this.style.backgroundColor='var(--primary-dark)'" onmouseout="this.style.backgroundColor='var(--primary-color)'">
+                <i class="fas fa-print"></i> Print Now
+            </button>
+        </div>
+
         <footer>
-            <p>
-                &copy; <span id="year"></span> <a href="//luov.top">LuoV</a> Last
-                updated: Nov. 2025.
-            </p>
+            <div class="footer-content-web">
+                &copy; <span id="year"></span> <a href="//luov.top" style="color:#aaa;">LuoV</a>. Last updated: November 23, 2025.
+            </div>
+            
+            <div class="footer-content-print">
+                <span>Wei Luo</span>
+                <span>Last updated: November 23, 2025</span>
+            </div>
         </footer>
     </div>
 
     <script>
-        // Auto-update year
         document.getElementById("year").innerText = new Date().getFullYear();
     </script>
 </body>
-
 </html>
