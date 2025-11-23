@@ -394,52 +394,37 @@
             }
         }
 
-        /* --- 打印专属样式 --- */
+        /* --- 打印专属样式 (修复第二页顶部间距) --- */
         @media print {
-
-            .lang-switch,
-            .pub-link-icon,
-            .print-hide {
-                display: none !important;
+            /* [关键修改]
+               使用 @page 设置上下边距。
+               浏览器会自动在每一页（包括第二页）的顶部保留 1.5cm。
+               注意：这可能会让时间戳重新显示，请在打印预览中取消勾选“页眉和页脚”。
+            */
+            @page {
+                margin: 1cm 0; /* 上下1.5cm，左右0 */
             }
 
-            .print-show {
-                display: inline !important;
+            body {
+                padding: 0 1cm; /* 只有左右使用 padding */
             }
 
-            .container {
-                width: 100%;
-                max-width: 100%;
-                padding: 0;
-                margin: 0;
-            }
-
-            a {
-                text-decoration: none;
-            }
-
-            .honor-grid {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                column-gap: 30px;
-            }
-
-            .honor-category {
-                grid-column: 1 / -1 !important;
-            }
-
-            .edu-header {
-                flex-direction: row !important;
+            .lang-switch, .pub-link-icon, .print-hide { display: none !important; }
+            .print-show { display: inline !important; }
+            
+            .container { width: 100%; max-width: 100%; padding: 0; margin: 0; }
+            a { text-decoration: none; } 
+            
+            .honor-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; column-gap: 30px; }
+            .honor-category { grid-column: 1 / -1 !important; }
+            
+            .edu-header { 
+                flex-direction: row !important; 
                 align-items: baseline !important;
                 justify-content: space-between !important;
             }
 
-            .honor-item,
-            .pub-item,
-            .edu-item {
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
+            .honor-item, .pub-item, .edu-item { break-inside: avoid; page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -523,11 +508,20 @@
 
         <section>
             <h2 class="section-title">代表性论文</h2>
+            <span class="print-hide">
             <div style="margin-bottom: 15px; color: #888; font-size: 0.9rem;">
                 <i class="fas fa-info-circle"></i> 仅列出前三作者或通讯作者论文。完整列表请查阅 <a
                     href="https://scholar.google.com/citations?hl=zh-CN&view_op=list_works&gmla=AKzYXQ3g-TEh1LZJDuYIfGxuk1jlN6KSw9ViW6lTAD8gY487snHbsPUtPhBvS-mFcdouuWW-VHkfFi4jUO8jXjyBWZilOU0KPwWKF3tOQplmIUO2xHle5uhPx9DvmWJxLPY&user=RImdKpAAAAAJ">Google
                     Scholar</a> 。
             </div>
+            </span>
+            <span class="print-show">
+            <div style="margin-bottom: 15px; color: #888; font-size: 0.9rem;">
+                <i class="fas fa-info-circle"></i> 仅列出第一作者或通讯作者论文。完整列表请查阅 <a
+                    href="https://scholar.google.com/citations?hl=zh-CN&view_op=list_works&gmla=AKzYXQ3g-TEh1LZJDuYIfGxuk1jlN6KSw9ViW6lTAD8gY487snHbsPUtPhBvS-mFcdouuWW-VHkfFi4jUO8jXjyBWZilOU0KPwWKF3tOQplmIUO2xHle5uhPx9DvmWJxLPY&user=RImdKpAAAAAJ">Google
+                    Scholar</a> 。
+            </div>
+            </span>
             <!-- <div class="pub-item">
                 <div class="pub-title-row">
                     <span class="pub-title">EdgeOAR: Real-time Online Action Recognition On Edge Devices</span>
@@ -773,8 +767,10 @@
         </section>
 
         <footer>
+            
             <p
                 style="margin-top: 50px; color: #aaa; font-size: 0.8rem; text-align: center; border-top: 1px solid #f0f0f0; padding-top: 20px;">
+                <span class="print-hide"><i class="fas fa-print"></i> 本页面可以直接打印，请取消勾选“页眉和页脚”。</span><br>
                  &copy; <span id="year"></span> <a href="//luov.top" style="color:#aaa;">LuoV</a>  |  2025年11月23日更新
             </p>
         </footer>
