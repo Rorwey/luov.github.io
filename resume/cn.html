@@ -242,7 +242,6 @@
             border-bottom: 1px solid var(--primary-color);
             background: #f0f7ff;
             text-decoration: none;
-            /* [修复] 强制去掉默认下划线，只显示底边框实线 */
         }
 
         /* 论文列表 */
@@ -286,7 +285,6 @@
         .my-name2 {
             font-weight: 700;
             color: #000;
-            /* text-decoration: underline; */
         }
 
         .pub-venue {
@@ -336,7 +334,6 @@
             padding-right: 10px;
         }
 
-        /* 图标颜色改为橘色 (#e67e22) */
         .honor-name i {
             color: #e67e22;
             margin-right: 8px;
@@ -394,37 +391,140 @@
             }
         }
 
-        /* --- 打印专属样式 (修复第二页顶部间距) --- */
+        /* --- 打印提示框样式 --- */
+        .print-hint {
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #f0f7ff;
+            border: 1px dashed #cce5ff;
+            border-radius: 6px;
+            color: #555;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        /* --- 页脚通用样式 --- */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 30px 0;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        /* 默认隐藏打印版页脚 */
+        .footer-content-print {
+            display: none;
+        }
+
+        /* --- 打印专属样式 --- */
         @media print {
-            /* [关键修改]
-               使用 @page 设置上下边距。
-               浏览器会自动在每一页（包括第二页）的顶部保留 1.5cm。
-               注意：这可能会让时间戳重新显示，请在打印预览中取消勾选“页眉和页脚”。
-            */
             @page {
-                margin: 1cm 0; /* 上下1.5cm，左右0 */
+                margin: 1cm 0; /* 上下边距，防止被切割 */
             }
 
             body {
-                padding: 0 1cm; /* 只有左右使用 padding */
+                padding: 0 1cm; /* 内容左右内边距 */
             }
 
-            .lang-switch, .pub-link-icon, .print-hide { display: none !important; }
-            .print-show { display: inline !important; }
-            
-            .container { width: 100%; max-width: 100%; padding: 0; margin: 0; }
-            a { text-decoration: none; } 
-            
-            .honor-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; column-gap: 30px; }
-            .honor-category { grid-column: 1 / -1 !important; }
-            
-            .edu-header { 
-                flex-direction: row !important; 
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            /* --- 核心修复：强制显示 Header 并横向布局 --- */
+            header {
+                display: flex !important; /* 强制显示 */
+                flex-direction: row !important; /* 强制横向，防止变成手机版堆叠 */
+                align-items: flex-start !important;
+                text-align: left !important;
+                padding-bottom: 15px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .avatar {
+                margin-right: 25px !important;
+                margin-bottom: 0 !important;
+                width: 100px !important; /* 打印时稍微缩小一点头像 */
+                height: 100px !important;
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
+
+            .header-info {
+                text-align: left !important;
+            }
+
+            .contact-links {
+                justify-content: flex-start !important; /* 强制左对齐 */
+            }
+            /* ------------------------------------- */
+
+            /* 隐藏元素列表：提示框、语言按钮、网页页脚、链接图标等 */
+            .print-hint,
+            .footer-content-web,
+            .lang-switch,      /* 隐藏语言切换按钮 */
+            .pub-link-icon,
+            .print-hide {
+                display: none !important;
+            }
+
+            .print-show {
+                display: inline !important;
+            }
+
+            a {
+                text-decoration: none;
+                color: var(--primary-color) !important;
+            }
+
+            /* 强制荣誉列表双列显示 */
+            .honor-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                column-gap: 30px;
+            }
+
+            .honor-category {
+                grid-column: 1 / -1 !important;
+            }
+
+            .edu-header {
+                flex-direction: row !important;
                 align-items: baseline !important;
                 justify-content: space-between !important;
             }
 
-            .honor-item, .pub-item, .edu-item { break-inside: avoid; page-break-inside: avoid; }
+            /* 防止分页断裂 */
+            .honor-item,
+            .pub-item,
+            .edu-item {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* 显示打印版页脚 */
+            .footer-content-print {
+                display: flex !important;
+                justify-content: space-between;
+                width: 100%;
+                color: #000;
+                font-weight: 500;
+                font-size: 0.85rem;
+            }
+
+            footer {
+                margin-top: 20px !important;
+                padding-top: 10px !important;
+                border-top: 1px solid #000 !important;
+                color: #000 !important;
+            }
         }
     </style>
 </head>
@@ -509,30 +609,19 @@
         <section>
             <h2 class="section-title">代表性论文</h2>
             <span class="print-hide">
-            <div style="margin-bottom: 15px; color: #888; font-size: 0.9rem;">
-                <i class="fas fa-info-circle"></i> 仅列出前三作者或通讯作者论文。完整列表请查阅 <a
-                    href="https://scholar.google.com/citations?hl=zh-CN&view_op=list_works&gmla=AKzYXQ3g-TEh1LZJDuYIfGxuk1jlN6KSw9ViW6lTAD8gY487snHbsPUtPhBvS-mFcdouuWW-VHkfFi4jUO8jXjyBWZilOU0KPwWKF3tOQplmIUO2xHle5uhPx9DvmWJxLPY&user=RImdKpAAAAAJ">Google
-                    Scholar</a> 。
-            </div>
+                <div style="margin-bottom: 15px; color: #888; font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> 仅列出前三作者或通讯作者论文。完整列表请查阅 <a
+                        href="https://scholar.google.com/citations?hl=zh-CN&view_op=list_works&gmla=AKzYXQ3g-TEh1LZJDuYIfGxuk1jlN6KSw9ViW6lTAD8gY487snHbsPUtPhBvS-mFcdouuWW-VHkfFi4jUO8jXjyBWZilOU0KPwWKF3tOQplmIUO2xHle5uhPx9DvmWJxLPY&user=RImdKpAAAAAJ">Google
+                        Scholar</a> 。
+                </div>
             </span>
             <span class="print-show">
-            <div style="margin-bottom: 15px; color: #888; font-size: 0.9rem;">
-                <i class="fas fa-info-circle"></i> 仅列出第一作者或通讯作者论文。完整列表请查阅 <a
-                    href="https://scholar.google.com/citations?hl=zh-CN&view_op=list_works&gmla=AKzYXQ3g-TEh1LZJDuYIfGxuk1jlN6KSw9ViW6lTAD8gY487snHbsPUtPhBvS-mFcdouuWW-VHkfFi4jUO8jXjyBWZilOU0KPwWKF3tOQplmIUO2xHle5uhPx9DvmWJxLPY&user=RImdKpAAAAAJ">Google
-                    Scholar</a> 。
-            </div>
+                <div style="margin-bottom: 15px; color: #888; font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> 仅列出第一作者或通讯作者论文。完整列表请查阅 <a
+                        href="https://scholar.google.com/citations?hl=zh-CN&view_op=list_works&gmla=AKzYXQ3g-TEh1LZJDuYIfGxuk1jlN6KSw9ViW6lTAD8gY487snHbsPUtPhBvS-mFcdouuWW-VHkfFi4jUO8jXjyBWZilOU0KPwWKF3tOQplmIUO2xHle5uhPx9DvmWJxLPY&user=RImdKpAAAAAJ">Google
+                        Scholar</a> 。
+                </div>
             </span>
-            <!-- <div class="pub-item">
-                <div class="pub-title-row">
-                    <span class="pub-title">EdgeOAR: Real-time Online Action Recognition On Edge Devices</span>
-                    <a href="https://scholar.google.com/scholar?q=EdgeOAR%3A+Real-time+Online+Action+Recognition+On+Edge+Devices" target="_blank" title="查看论文" class="pub-link-icon"><i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <div class="pub-meta-row">
-                    <span class="my-name">W. Luo</span>, D. Zhang, Y. Tang, <i>et al.</i>
-                    <span class="pub-venue">IEEE Transactions on Mobile Computing (TMC), 2025.</span>
-                    <span class="pub-tag highlight">CCF-A</span>
-                </div>
-            </div> -->
 
             <div class="pub-item">
                 <div class="pub-title-row">
@@ -557,9 +646,11 @@
                     </div>
                 </div>
             </span>
+
             <div class="pub-item">
                 <div class="pub-title-row">
-                    <span class="pub-title">MSA–HAR: Multi-Scale Segmented Attention Networks for Human Activity Recognition Using Sensor Signals</span>
+                    <span class="pub-title">MSA–HAR: Multi-Scale Segmented Attention Networks for Human Activity
+                        Recognition Using Sensor Signals</span>
                 </div>
                 <div class="pub-meta-row">
                     W. Quan, Y. Tang, <span class="my-name">W. Luo</span> <i class="fas fa-envelope"></i>, <i>et al.</i>
@@ -580,6 +671,7 @@
                     </div>
                 </div>
             </span>
+
             <span class="print-hide">
                 <div class="pub-item">
                     <div class="pub-title-row">
@@ -595,6 +687,7 @@
                     </div>
                 </div>
             </span>
+
             <span class="print-hide">
                 <div class="pub-item">
                     <div class="pub-title-row">
@@ -621,45 +714,48 @@
                 </div>
             </div>
             <span class="print-hide">
-            <div class="pub-item">
-                <div class="pub-title-row">
-                    <span class="pub-title">Content-based Remote Sensing Image Retrieval Based on Fuzzy Rules and a
-                        Fuzzy Distance</span>
+                <div class="pub-item">
+                    <div class="pub-title-row">
+                        <span class="pub-title">Content-based Remote Sensing Image Retrieval Based on Fuzzy Rules and a
+                            Fuzzy Distance</span>
+                    </div>
+                    <div class="pub-meta-row">
+                        F. Ye, <span class="my-name2">W. Luo</span>, M. Dong, <i>et al.</i>
+                        <span class="pub-venue">IEEE Geoscience and Remote Sensing Letters, 2020.</span>
+                        <span class="pub-tag">CCF C</span><span class="pub-tag">SCI Q3</span>
+                    </div>
                 </div>
-                <div class="pub-meta-row">
-                    F. Ye, <span class="my-name2">W. Luo</span>, M. Dong, <i>et al.</i>
-                    <span class="pub-venue">IEEE Geoscience and Remote Sensing Letters, 2020.</span>
-                    <span class="pub-tag">CCF C</span><span class="pub-tag">SCI Q3</span>
-                </div>
-            </div>
             </span>
+
             <span class="print-hide">
-            <div class="pub-item">
-                <div class="pub-title-row">
-                    <span class="pub-title">Query-Adaptive Remote Sensing Image Retrieval Based on Image Rank Similarity
-                        and Image-to-Query Class Similarity</span>
+                <div class="pub-item">
+                    <div class="pub-title-row">
+                        <span class="pub-title">Query-Adaptive Remote Sensing Image Retrieval Based on Image Rank
+                            Similarity
+                            and Image-to-Query Class Similarity</span>
+                    </div>
+                    <div class="pub-meta-row">
+                        F. Ye, X. Zhao, <span class="my-name2">W. Luo</span>, <i>et al.</i>
+                        <span class="pub-venue">IEEE Access , 2020.</span>
+                        <span class="pub-tag highlight">SCI Q2</span>
+                    </div>
                 </div>
-                <div class="pub-meta-row">
-                    F. Ye, X. Zhao, <span class="my-name2">W. Luo</span>, <i>et al.</i>
-                    <span class="pub-venue">IEEE Access , 2020.</span>
-                    <span class="pub-tag highlight">SCI Q2</span>
-                </div>
-            </div>
             </span>
+
             <span class="print-hide">
-            <div class="pub-item">
-                <div class="pub-title-row">
-                    <span class="pub-title">A New Re-Ranking Method Based on Convolutional Neural Network and Two
-                        Image-to-Class Distances for Remote Sensing Image Retrieval</span>
+                <div class="pub-item">
+                    <div class="pub-title-row">
+                        <span class="pub-title">A New Re-Ranking Method Based on Convolutional Neural Network and Two
+                            Image-to-Class Distances for Remote Sensing Image Retrieval</span>
+                    </div>
+                    <div class="pub-meta-row">
+                        F. Ye, M. Dong, <span class="my-name2">W. Luo</span>, <i>et al.</i>
+                        <span class="pub-venue">IEEE Access, 2019.</span>
+                        <span class="pub-tag highlight">SCI Q2</span>
+                    </div>
                 </div>
-                <div class="pub-meta-row">
-                    F. Ye, M. Dong, <span class="my-name2">W. Luo</span>, <i>et al.</i>
-                    <span class="pub-venue">IEEE Access, 2019.</span>
-                    <span class="pub-tag highlight">SCI Q2</span>
-                </div>
-            </div>
             </span>
-            
+
             <div class="pub-item">
                 <div class="pub-title-row">
                     <span class="pub-title">SAR Image Retrieval Based on Unsupervised Domain Adaptation and
@@ -683,16 +779,16 @@
                 </div>
             </div>
             <span class="print-hide">
-            <div class="pub-item">
-                <div class="pub-title-row">
-                    <span class="pub-title">基于卷积神经网络和重排序的农业遥感图像检索</span>
+                <div class="pub-item">
+                    <div class="pub-title-row">
+                        <span class="pub-title">基于卷积神经网络和重排序的农业遥感图像检索</span>
+                    </div>
+                    <div class="pub-meta-row">
+                        叶发茂, 董萌, <span class="my-name2">罗威</span>, <i>等.</i>
+                        <span class="pub-venue">农业工程学报，2019.</span>
+                        <span class="pub-tag">EI</span>
+                    </div>
                 </div>
-                <div class="pub-meta-row">
-                    叶发茂, 董萌, <span class="my-name2">罗威</span>, <i>等.</i>
-                    <span class="pub-venue">农业工程学报，2019.</span>
-                    <span class="pub-tag">EI</span>
-                </div>
-            </div>
             </span>
 
         </section>
@@ -703,10 +799,6 @@
 
                 <div class="honor-category">研究生阶段 (博士 & 硕士)</div>
 
-                <!-- <div class="honor-item">
-                    <span class="honor-name"><i class="fas fa-user-edit"></i> 审稿人: IEEE T-BIOM</span>
-                    <span class="honor-time">2023 - 至今</span>
-                </div> -->
                 <div class="honor-item">
                     <span class="honor-name"><i class="fas fa-trophy"> </i>第三届湖南省研究生人工智能创新大赛团队一等奖</span>
                     <span class="honor-time">2022</span>
@@ -765,14 +857,45 @@
             </div>
         </section>
 
+        <div class="print-hint">
+            <div style="text-align: left;">
+                <div style="font-weight: bold; color: #333; margin-bottom: 5px; font-size: 1rem;">
+                    <i class="fas fa-file-pdf" style="color: var(--primary-color);"></i>
+                    另存为 PDF / 打印简历
+                </div>
+                <div style="font-size: 0.85rem; line-height: 1.5;">
+                    本页面已针对打印排版进行优化。
+                    <br>
+                    <span style="color: #c82333;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <strong>重要提示：</strong>请在打印设置中<u>取消勾选“页眉和页脚”</u>。
+                    </span>
+                </div>
+            </div>
+            <button onclick="window.print()"
+                style="background-color: var(--primary-color); color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; white-space: nowrap; transition: background 0.2s;"
+                onmouseover="this.style.backgroundColor='var(--primary-dark)'"
+                onmouseout="this.style.backgroundColor='var(--primary-color)'">
+                <i class="fas fa-print"></i> 立即打印
+            </button>
+        </div>
+
         <footer>
-            
-            <p
-                style="margin-top: 50px; color: #aaa; font-size: 0.8rem; text-align: center; border-top: 1px solid #f0f0f0; padding-top: 20px;">
-                <span class="print-hide"><i class="fas fa-print"></i> 本页面可以直接打印，请取消勾选“页眉和页脚”。</span><br>
-                 &copy; <span id="year"></span> <a href="//luov.top" style="color:#aaa;">LuoV</a>  |  2025年11月23日更新
-            </p>
+            <div class="footer-content-web">
+                &copy; <span id="year"></span> <a href="//luov.top" style="color: #888; text-decoration: none;">LuoV</a>
+                &nbsp;|&nbsp;
+                2025年11月23日更新
+            </div>
+
+            <div class="footer-content-print">
+                <span>罗威</span>
+                <span>2025年11月23日更新</span>
+            </div>
         </footer>
+
+        <script>
+            document.getElementById("year").innerText = new Date().getFullYear();
+        </script>
     </div>
 
     <script>
