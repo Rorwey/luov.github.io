@@ -9,14 +9,93 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icon/favicon-16x16.png">
-    <link rel="manifest" href="assets/images/icon/site.webmanifest">
-    <link rel="mask-icon" href="assets/images/icon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="assets/css/main.css" />
+
+    <style>
+        /* --- 1. 背景层：负责图片显示和滚动 --- */
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            /* 请确保路径下有你的背景图片 */
+            background-image: url('assets/css/images/bg.jpg');
+            /* 水平重复，实现首尾相连 */
+            background-repeat: repeat-x; 
+            /* 高度撑满，宽度自动 */
+            background-size: auto 100%; 
+            background-position: 0 center;
+            /* 应用滚动动画：60秒循环一次 */
+            animation: bg-scroll 60s linear infinite;
+        }
+
+        /* 背景滚动动画定义 */
+        @keyframes bg-scroll {
+            0% { background-position-x: 0; }
+            /* 假设图片宽度约1920px，负值向左移动实现循环 */
+            100% { background-position-x: -1920px; } 
+        }
+
+        /* --- 2. 遮罩层(Overlay)：核心科技光棱效果 --- */
+        /* --- 方案二：数字电路 (Cyber Circuit) --- */
+        #overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+
+            /* 深色基调 */
+            background-color: rgba(15, 25, 40, 0.7);
+
+            /* 复杂的几何渐变组合 */
+            background-image: 
+                /* 暗角 */
+                radial-gradient(circle at 50% 50%, transparent 20%, rgba(0,0,0,0.9) 100%),
+                
+                /* 45度斜线网格 1 */
+                linear-gradient(45deg, rgba(0, 247, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 247, 255, 0.05) 75%, rgba(0, 247, 255, 0.05)), 
+                
+                /* 45度斜线网格 2 (错位) */
+                linear-gradient(45deg, rgba(0, 247, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 247, 255, 0.05) 75%, rgba(0, 247, 255, 0.05));
+
+            /* 错位设置，产生电路板/编织效果 */
+            background-position: 0 0, 0 0, 110px 110px;
+            background-size: 100% 100%, 110px 110px, 110px 110px;
+
+            /* 混合模式 */
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        /* --- 3. 内容层与文字增强 --- */
+        #main {
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* 为了配合复杂的科技背景，增强文字的亮度和阴影，确保清晰可读 */
+        #header h1 {
+            text-shadow: 0 2px 10px rgba(0, 247, 255, 0.3); /* 增加一点青色辉光 */
+        }
+        #header p, #hitokoto_text {
+            color: rgba(255, 255, 255, 0.9) !important;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* 4. 防止白屏强制显示 */
+        body {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    </style>
+
     <script>
         var _hmt = _hmt || [];
         (function() {
@@ -28,78 +107,82 @@
     </script>
 </head>
 
-<body class="loading">
+<body>
     <div id="wrapper">
         <div id="bg"></div>
         <div id="overlay"></div>
+        
         <div id="main">
 
             <header id="header">
-                <a href="//time.luov.top">
-                    <h1>LuoV</h1>
-                </a>
-                <p style="font-family: Kaiti; margin-top: 10px;">
-                    <a href="#" id="hitokoto_text" style="text-decoration: none; color: inherit; border-bottom: none;">
-                        Eternal charm,&nbsp; Endless sound.
+                <h1>LuoV</h1>
+                <p style="font-family: 'Kaiti', 'KaiTi', serif; margin-top: 10px; font-size: 1.1em;">
+                    <a href="#" id="hitokoto_text" style="text-decoration: none; color: inherit; border-bottom: none; transition: color 0.3s;">
+                        Loading...
                     </a>
                 </p>
 
                 <nav>
                     <ul>
                         <li>
-                            <a href="http://xian6ge.cn" class="icon fa-envira" title="Blog"><span class="label">Blog</span></a>
+                            <a href="http://xian6ge.cn" class="icon solid fa-leaf" title="Blog" target="_blank">
+                                <span class="label">Blog</span>
+                            </a>
                         </li>
                         <li>
-                            <a href="https://github.com/Rorwey" class="icon fa-github" title="Github"><span class="label">Github</span></a>
+                            <a href="https://scholar.google.com/citations?hl=zh-CN&user=RImdKpAAAAAJ" class="icon solid fa-graduation-cap" title="Google Scholar" target="_blank">
+                                <span class="label">Scholar</span>
+                            </a>
                         </li>
                         <li>
-                            <a href="resume" class="icon fa-file-text-o" title="Resume"><span class="label">Resume</span></a>
+                            <a href="https://github.com/Rorwey" class="icon brands fa-github" title="Github" target="_blank">
+                                <span class="label">Github</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="resume" class="icon solid fa-file-lines" title="Resume" target="_blank">
+                                <span class="label">Resume</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:rorwey@foxmail.com" class="icon solid fa-envelope" title="Email">
+                                <span class="label">Email</span>
+                            </a>
                         </li>
                     </ul>
                 </nav>
             </header>
 
             <footer id="footer">
-                <span class="copyright">&copy; <q id="year">2018-2025</q>&nbsp; <a href="http://luov.top">luov.top</a> &nbsp;All Rights Reserved<br /></span>
+                <span class="copyright">&copy; <span id="year">2025</span> LuoV. All Rights Reserved.</span>
             </footer>
 
         </div>
     </div>
 
     <script>
-        window.onload = function() {
-            document.body.className = '';
-            var currentYear = new Date().getFullYear();
-            document.getElementById('year').innerText = '2018-' + currentYear;
-        }
+        // 1. 更新年份
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // 2. 防止移动端拖拽影响体验
         window.ontouchmove = function() { return false; }
         window.onorientationchange = function() { document.body.scrollTop = 0; }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
-    
     <script>
         fetch('https://v1.hitokoto.cn')
-            .then(function(response) {
-                return response.json();
-            })
+            .then(function(response) { return response.json(); })
             .then(function(data) {
                 var hitokoto = document.getElementById('hitokoto_text');
-                // 设置链接跳转到一言出处
-                hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid;
-                // 设置文本内容
-                hitokoto.innerText = data.hitokoto;
-                
-                // 如果有来源，你也可以选择显示来源，例如：
-                // if(data.from) { hitokoto.innerText += " —— " + data.from; }
+                if (hitokoto) {
+                    hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid;
+                    hitokoto.innerText = data.hitokoto;
+                }
             })
             .catch(function(err) {
                 console.error('一言获取失败:', err);
+                document.getElementById('hitokoto_text').innerText = "Eternal charm, Endless sound.";
             });
     </script>
-    
-    <script type="text/javascript" src="/assets/js/js.js"></script>
 </body>
-
 </html>
