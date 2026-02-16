@@ -523,10 +523,16 @@ footer {
         color: #000 !important; 
     }
     
-    /* 页边距优化 */
+    /* 页边距优化 - 预留空间给页眉页脚 */
     @page { 
-        margin: 0.8cm; 
+        margin: 0.8cm 1cm; 
         size: A4;
+        @top-left { content: none; }
+        @top-center { content: none; }
+        @top-right { content: none; }
+        @bottom-left { content: none; }
+        @bottom-center { content: none; }
+        @bottom-right { content: none; }
     }
     
     /* 头部紧凑布局 */
