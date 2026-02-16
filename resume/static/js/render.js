@@ -179,11 +179,9 @@
         d.publications.forEach(p => {
             if(checkRecent(p.year) && shouldShow(p)) {
                 const venueName = p.venue.en || p.venue.cn;
-                // 只有中文环境且有中文venue才显示中文描述
-                const isCnContext = currentLang === 'cn' && !!p.venue.cn;
-                const text = isCnContext
-                    ? `论文 "<strong>${p.title}</strong>" 被 ${venueName} 录用。`
-                    : `Paper "<strong>${p.title}</strong>" accepted by ${venueName}.`;
+                const text = currentLang === 'cn'
+                    ? `论文 "<strong>${p.title}</strong>" 被 <em>${venueName}</em> 录用。`
+                    : `Paper "<strong>${p.title}</strong>" accepted by <em>${venueName}</em>.`;
                 newsList.push({ date: p.year, html: text });
             }
         });
