@@ -275,7 +275,10 @@ section[id] {
 }
 .me-bold { 
     font-weight: 700; 
+}
+.me-underline { 
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 .pub-venue {
     font-style: italic;

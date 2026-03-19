@@ -50,7 +50,7 @@
         
         // 筛选逻辑
         const topTier = tags.filter(t => ["SCI", "CCF"].includes(t.type));
-        const midTier = tags.filter(t => t.type === "EI");
+        const midTier = tags.filter(t => ["EI", "CSCD"].includes(t.type));
         // 学校Tag通常没有type，或者level包含特定关键词
         const schoolTier = tags.filter(t => t.level?.includes("985") || t.level?.includes("211") || t.en?.includes("Project") || t.level?.includes("原"));
         
@@ -72,7 +72,8 @@
             // 论文 Tag 样式
             const isHigh = ["SCI", "CCF"].includes(tag.type) && ["Q1", "Q2", "A", "B"].includes(tag.level);
             const className = isHigh ? "badge highlight" : "badge";
-            const text = `${tag.type} ${tag.level}`.trim();
+            // EI 和 CSCD 只显示类型，不显示 level
+            const text = ["EI", "CSCD"].includes(tag.type) ? tag.type : `${tag.type} ${tag.level}`.trim();
             return `<span class="${className}">${text}</span>`;
         }).join("");
     }
@@ -147,8 +148,8 @@
                 <div class="meta-left">
                     <span style="font-weight:700; color:#000;">${getText(info.title)}</span>
                     ${info.tags.map(tag => {
-                        if(!shouldShow(tag)) return '';
-                        return `<span class="badge" style="${tag.style||''}"><i class="${tag.iconClass}"></i>${getText(tag)}</span>`;
+                        if (tag.print && !tag.print[currentLang]) return '';
+                        return '<span class="badge" style="' + (tag.style||'') + '"><i class="' + tag.iconClass + '"></i>' + getText(tag) + '</span>';
                     }).join('')}
                 </div>
                 <div class="meta-right contact-links">
@@ -176,12 +177,14 @@
              return diff >= 0 && diff <= monthLimit;
         }
 
-        d.publications.forEach(p => {
+        d.publications.forEach(function(p) {
             if(checkRecent(p.year) && shouldShow(p)) {
-                const venueName = p.venue.en || p.venue.cn;
-                const text = currentLang === 'cn'
-                    ? `论文 "<strong>${p.title}</strong>" 被 <em>${venueName}</em> 录用。`
-                    : `Paper "<strong>${p.title}</strong>" accepted by <em>${venueName}</em>.`;
+                var title = (currentLang === 'cn' && p.title_cn) ? p.title_cn : p.title;
+                if (typeof title === 'object') title = getText(title);
+                var venueName = currentLang === 'cn' ? (p.venue.cn || p.venue.en) : (p.venue.en || p.venue.cn);
+                var text = currentLang === 'cn'
+                    ? '论文 "<strong>' + title + '</strong>" 被 <em>' + venueName + '</em> 录用。'
+                    : 'Paper "<strong>' + title + '</strong>" accepted by <em>' + venueName + '</em>.';
                 newsList.push({ date: p.year, html: text });
             }
         });
@@ -229,15 +232,17 @@
         document.getElementById('pub-list').innerHTML = d.publications.map(pub => {
             if(!shouldShow(pub)) return '';
             
+            // 根据语言选择标题：优先使用 title_cn，否则使用 title
+            const title = currentLang === 'cn' && pub.title_cn ? pub.title_cn : pub.title;
             // 如果 venue.cn 不存在，说明是纯英文期刊/会议，作者强制英文
             const forceEnglishAuthors = !pub.venue.cn; 
-            const venueName = pub.venue.en || pub.venue.cn;
+            const venueName = currentLang === 'cn' && pub.venue.cn ? pub.venue.cn : (pub.venue.en || pub.venue.cn);
 
             return `
             <div class="pub-item">
                 <div class="pub-title-row">
-                    <span class="pub-title">${pub.title}</span>
-                    <a href="${pub.link}" target="_blank" class="print-hide"><i class="fas fa-external-link-alt" style="font-size:0.85rem; color:#999;"></i></a>
+                    <span class="pub-title">${title}</span>
+                    ${pub.link && pub.link !== '#' ? `<a href="${pub.link}" target="_blank" class="print-hide"><i class="fas fa-external-link-alt" style="font-size:0.85rem; color:#999;"></i></a>` : ''}
                 </div>
                 <div class="pub-meta-row">
                     ${renderAuthors(pub.authors, forceEnglishAuthors)}
@@ -282,17 +287,11 @@
         document.getElementById('award-container').innerHTML = awardHTML;
 
         // 6. Service
-        document.getElementById('service-list').innerHTML = d.services.map(cat => `
-            <div class="list-item">
-                <div style="font-weight:700; margin-bottom:5px;">${getText(cat.title)}</div>
-                <ul class="service-list">
-                    ${cat.items.map(item => {
-                         if(!shouldShow(item)) return '';
-                         return `<li>${getText(item.content)}</li>`;
-                    }).join('')}
-                </ul>
-            </div>
-        `).join('');
+        document.getElementById('service-list').innerHTML = d.services.map(cat => {
+            var items = cat.items.filter(function(item) { return shouldShow(item); });
+            if (items.length == 0) return '';
+            return '<div class="list-item"><div style="font-weight:700; margin-bottom:5px;">' + getText(cat.title) + '</div><ul class="service-list">' + items.map(function(item) { return '<li>' + getText(item.content) + '</li>'; }).join('') + '</ul></div>';
+        }).join('');
 
         // Footer
         const year = new Date().getFullYear();
@@ -300,6 +299,10 @@
         document.getElementById('footer-content').innerHTML = `
             &copy; ${year} LuoV | ${updateText}: ${d.config.lastUpdate}
         `;
+        
+        if (!document.getElementById('service-list').innerHTML.trim()) {
+            document.getElementById('service-section').classList.add('hidden');
+        }
     }
 
     if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
