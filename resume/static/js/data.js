@@ -3,7 +3,7 @@ const resumeData = {
   config: {
     githubUser: "rorwey",
     scholarId: "RImdKpAAAAAJ",
-    lastUpdate: "2026.02.16",
+    lastUpdate: "2026.03.18",
   },
 
   // === 个人信息 ===
@@ -15,24 +15,27 @@ const resumeData = {
       "https://cdn.jsdelivr.net/gh/Rorwey/ImgsHome@main/20220612/avatar.6ev9ip3ahuk0.webp",
     // 简介：中文设为 null 则不显示
     bio: {
-      en: "I am currently a Ph.D. Student at Central South University (CSU), advised by Assoc. Prof. Deyu Zhang. My research interests lie in Computer Vision and Edge Computing.",
-      cn: "我是中南大学的博士研究生，师从张德宇副教授。我的研究方向集中在计算机视觉和边缘计算领域。",
+      en: "I am currently a Ph.D. Student at Central South University (CSU), advised by Prof. Deyu Zhang. My research interests lie in Computer Vision and Edge Computing.",
+      cn: "我是中南大学的博士研究生，师从张德宇教授。我的研究方向集中在计算机视觉和边缘计算领域。",
     },
     // tags: 个人标签
-    tags: [{
-      en: "CPC Member",
-      cn: "中共党员",
-      iconClass: "fas fa-star", // 使用 font-awesome 类名
-      style: "color: var(--party-red);",
-      print: { en: false, cn: true },
-      displayIn: { en: false, cn: true },
-    }, {
-      en: "CET-6",
-      cn: "CET-6",
-      iconClass: "",
-      print: { en: false, cn: true },
-      displayIn: { en: false, cn: true },
-    }],
+    tags: [
+      {
+        en: "CPC Member",
+        cn: "中共党员",
+        iconClass: "fas fa-star", // 使用 font-awesome 类名
+        style: "color: var(--party-red);",
+        print: { en: false, cn: true },
+        displayIn: { en: false, cn: true },
+      },
+      {
+        en: "CET-6",
+        cn: "CET-6",
+        iconClass: "",
+        print: { en: false, cn: false },
+        displayIn: { en: false, cn: true },
+      },
+    ],
     email: "rorwey@foxmail.com",
     homepage: "https://luov.top",
     homepageDisplay: { en: "LuoV.top", cn: "luov.top" },
@@ -48,19 +51,42 @@ const resumeData = {
   // === 教育经历 (示例) ===
   education: [
     {
-      school: { en: "Central South University", cn: "中南大学" ,tags: [{level: "原985",print: { en: false, cn: true },displayIn: { en: false, cn: true }}] },
+      school: {
+        en: "Central South University",
+        cn: "中南大学",
+        tags: [
+          {
+            level: "原985",
+            print: { en: false, cn: true },
+            displayIn: { en: false, cn: true },
+          },
+        ],
+      },
       degree: { en: "Ph.D. Student", cn: "博士研究生" },
       major: { en: "Computer Science and Technology", cn: "计算机科学与技术" },
       time: "2020.09 - Present",
       advisor: {
-        name_en: "Assoc. Prof. Deyu Zhang",
-        name_cn: "张德宇 副教授",
+        name_en: "Prof. Deyu Zhang",
+        name_cn: "张德宇 教授",
         link: "https://faculty.csu.edu.cn/zhangdeyu/zh_CN/index.htm",
       },
-      focus: { en: "Computer Vision, Edge Computing", cn: "计算机视觉，边缘计算，人体行为分析" },
+      focus: {
+        en: "Computer Vision, Edge Computing",
+        cn: "计算机视觉，边缘计算，人体行为分析",
+      },
     },
     {
-      school: { en: "Nanchang University", cn: "南昌大学"  ,tags: [{level: "原211",print: { en: false, cn: true },displayIn: { en: false, cn: true }}]},
+      school: {
+        en: "Nanchang University",
+        cn: "南昌大学",
+        tags: [
+          {
+            level: "原211",
+            print: { en: false, cn: true },
+            displayIn: { en: false, cn: true },
+          },
+        ],
+      },
       degree: { en: "M.E. ", cn: "工学硕士" },
       major: { en: "Computer Science and Technology", cn: "计算机科学与技术" },
       time: "2019.09 - 2020.06",
@@ -69,13 +95,26 @@ const resumeData = {
         name_cn: "叶发茂 副教授",
         link: "https://chgcxy.ecut.edu.cn/c6/29/c9247a116265/page.htm",
       },
-      focus: { en: "Computer Vision, Remote Sensing Image Retrieval/Registration", cn: "计算机视觉，遥感图像检索与配准" },
+      focus: {
+        en: "Computer Vision, Remote Sensing Image Retrieval/Registration",
+        cn: "计算机视觉，遥感图像检索与配准",
+      },
       detail: {
         en: null,
       },
     },
     {
-      school: { en: "Nanchang University", cn: "南昌大学" ,tags: [{level: "原211",print: { en: false, cn: true },displayIn: { en: false, cn: true }}] },
+      school: {
+        en: "Nanchang University",
+        cn: "南昌大学",
+        tags: [
+          {
+            level: "原211",
+            print: { en: false, cn: true },
+            displayIn: { en: false, cn: true },
+          },
+        ],
+      },
       degree: { en: "B.M.", cn: "管理学学士" },
       time: "2013.09 - 2017.06",
       major: {
@@ -93,6 +132,50 @@ const resumeData = {
   // displayIn: "all" | "cn" | "en"
   // print: { en: true, cn: false } (可选，控制打印)
   publications: [
+    {
+      year: "2026.03.09",
+      title:
+        "FedMMoE: Robust Federated Learning of Multimodal Mixture of Experts （录用）",
+      venue: {
+        en: "International Conference on Computer Supported Cooperative Work in Design (CSCWD 2026)",
+      },
+      link: "#",
+      github: "#",
+      tags: [{ type: "CCF", level: "C" }],
+      authors: [
+        { name: "Deyu Zhang", name_cn: "张德宇" },
+        { name: " Congying Zhou", name_cn: "周聪颖" },
+        { name: "Chudi Cai", name_cn: "" },
+        {
+          name: "Wei Luo",
+          name_cn: "罗威",
+          isMe: true,
+          highlight: true,
+          isCorresp: true,
+        },
+      ],
+      print: { en: true, cn: true },
+      displayIn: { en: true, cn: true },
+    },
+    {
+      year: "2026.03.03",
+      title:
+        "MultiCounter+: Towards Efficient and Robust Multi-instance Repetitive Action Counting",
+      venue: {
+        en: " IEEE Transactions on Circuits and Systems for Video Technology(TCSVT)",
+      },
+      link: "#",
+      github: "#",
+      tags: [{ type: "SCI", level: "Q1" }],
+      authors: [
+        { name: "Deyu Zhang", name_cn: "张德宇" },
+        { name: " Yin Tang", name_cn: "周聪颖" },
+        { name: "Wei Luo", name_cn: "罗威", isMe: true },
+        { name: "Wei Huang", name_cn: "黄维" },
+      ],
+      print: { en: false, cn: true },
+      displayIn: { en: false, cn: true },
+    },
     {
       year: "2025.07.21",
       title: "EdgeOAR: Real-time Online Action Recognition On Edge Devices",
@@ -308,7 +391,7 @@ const resumeData = {
         { name: "Dajun Li", name_cn: "李丹" },
         { name: "Weidong Min", name_cn: "闵卫东" },
       ],
-      print: { en: false, cn: false },
+      print: { en: false, cn: true },
       displayIn: { en: false, cn: true },
     },
     {
@@ -367,7 +450,7 @@ const resumeData = {
       link: "https://ieeexplore.ieee.org/abstract/document/8851193/",
       github: "#",
       tags: [
-        { type: "SCI", level: "Q4" },
+        { type: "SCI", level: "Q2" },
         { type: "EI", level: "1" },
       ],
       authors: [
@@ -377,12 +460,14 @@ const resumeData = {
         { name: "Xiaoyong Chen", name_cn: "陈曦" },
         { name: "Weidong Min", name_cn: "闵卫东" },
       ],
-      print: { en: false, cn: false },
-      displayIn: { en: false, cn: false },
+      print: { en: false, cn: true },
+      displayIn: { en: false, cn: true },
     },
     {
       year: "2019.09.01",
-      title: "基于卷积神经网络和重排序的农业遥感图像检索",
+      title:
+        "Agricultural Remote Sensing Image Retrieval Based on Convolutional Neural Networks and Re-ranking",
+      title_cn: "基于卷积神经网络和重排序的农业遥感图像检索",
       venue: {
         en: "Transactions of the Chinese Society of Agricultural Engineering",
         cn: "农业工程学报",
@@ -398,12 +483,14 @@ const resumeData = {
         { name: "Xuqing Zhao", name_cn: "赵旭青" },
         { name: "Weidong Min", name_cn: "闵卫东" },
       ],
-      print: { en: false, cn: false },
+      print: { en: false, cn: true },
       displayIn: { en: false, cn: true },
     },
     {
       year: "2019.06.15",
-      title: "卷积神经网络特征在遥感图像配准中的应用",
+      title:
+        "Application of Convolutional Neural Network Features in Remote Sensing Image Registration",
+      title_cn: "卷积神经网络特征在遥感图像配准中的应用",
       venue: {
         en: "Natural Resources Remote Sensing",
         cn: "自然资源遥感",
@@ -428,7 +515,7 @@ const resumeData = {
   // icon: 仅提供核心名，如 "star", "trophy", "medal"
   // iconClass: "party-red" 或留空
   awards: [
-      {
+    {
       year: "2025.12.01",
       name: {
         en: "Central South University 2025 Motivational Scholarship",
@@ -438,11 +525,11 @@ const resumeData = {
       print: { en: true, cn: true },
       displayIn: { en: true, cn: true },
     },
-     {
+    {
       year: "2020.09-2024.06",
       name: {
         en: "Second-Class Postgraduate Academic Scholarship (awarded 4 times).",
-        cn: "研究生学业奖学金二等，4次",
+        cn: "（博士）研究生学业奖学金二等，4次",
       },
       icon: "graduation-cap",
       print: { en: false, cn: false },
@@ -500,7 +587,7 @@ const resumeData = {
       year: "2017.09-2020.06",
       name: {
         en: "First-Class Postgraduate Academic Scholarship, awarded 3 times.",
-        cn: "研究生一等学业奖学金，3次",
+        cn: "（硕士）研究生一等学业奖学金，3次",
       },
       icon: "graduation-cap",
       print: { en: false, cn: false },
@@ -516,7 +603,7 @@ const resumeData = {
       print: { en: false, cn: false },
       displayIn: { en: true, cn: true },
     },
-        {
+    {
       year: "2016.12.10",
       name: {
         en: "Outstanding Student Leader of Nanchang University, 2015-2016 Academic Year.",
@@ -526,7 +613,7 @@ const resumeData = {
       print: { en: false, cn: true },
       displayIn: { en: true, cn: true },
     },
-     {
+    {
       year: "2013.09-2016.06",
       name: {
         cn: "南昌大学学生中国特色社会主义理论学习研究会（校一级社团）-学习部成员、部长/会长",
@@ -538,7 +625,7 @@ const resumeData = {
     {
       year: "2014.11",
       name: {
-        cn: "管理学院第一届\“党在我心中\"演讲大赛 三等奖",
+        cn: '管理学院第一届\“党在我心中"演讲大赛 三等奖',
       },
       icon: "star",
       iconClass: "party-red",
@@ -559,7 +646,7 @@ const resumeData = {
       year: "2015.04",
       name: {
         en: "Third Prize in the 14th ``Challenge Cup‘’ at Nanchang University​.",
-        cn: "南昌大学第十四届\“挑战杯\"三等奖",
+        cn: '南昌大学第十四届\“挑战杯"三等奖',
       },
       icon: "star",
       iconClass: "trophy",
@@ -576,11 +663,13 @@ const resumeData = {
       items: [
         {
           year: "2025.12",
-          content: { en: "IEEE Transactions on Biometrics, Behavior, and Identity Science (T-BIOM)" },
-          print: { en: true, cn: true },
-          displayIn: { en: true, cn: true },
-        }
-      ]
+          content: {
+            en: "IEEE Transactions on Biometrics, Behavior, and Identity Science (T-BIOM)",
+          },
+          print: { en: false, cn: false },
+          displayIn: { en: false, cn: false },
+        },
+      ],
     },
-    ]
+  ],
 };
