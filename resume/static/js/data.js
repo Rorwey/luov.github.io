@@ -89,7 +89,7 @@ const resumeData = {
       },
       degree: { en: "M.E. ", cn: "工学硕士" },
       major: { en: "Computer Science and Technology", cn: "计算机科学与技术" },
-      time: "2019.09 - 2020.06",
+      time: "2017.09 - 2020.06",
       advisor: {
         name_en: ": Assoc. Prof. Famao Ye",
         name_cn: "叶发茂 副教授",
