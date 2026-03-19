@@ -3,7 +3,7 @@ const resumeData = {
   config: {
     githubUser: "rorwey",
     scholarId: "RImdKpAAAAAJ",
-    lastUpdate: "2026.03.18",
+    lastUpdate: "2026.03.19",
   },
 
   // === 个人信息 ===
