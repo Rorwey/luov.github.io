@@ -237,6 +237,8 @@
             // 如果 venue.cn 不存在，说明是纯英文期刊/会议，作者强制英文
             const forceEnglishAuthors = !pub.venue.cn; 
             const venueName = currentLang === 'cn' && pub.venue.cn ? pub.venue.cn : (pub.venue.en || pub.venue.cn);
+            // 提取年份
+            const year = pub.year ? pub.year.split('.')[0] : '';
 
             return `
             <div class="pub-item">
@@ -247,6 +249,7 @@
                 <div class="pub-meta-row">
                     ${renderAuthors(pub.authors, forceEnglishAuthors)}
                     <span class="pub-venue">${venueName}</span>
+                    ${year ? `<span class="pub-year">${year}</span>` : ''}
                     ${renderTags(pub.tags)}
                 </div>
             </div>`;
