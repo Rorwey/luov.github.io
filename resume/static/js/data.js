@@ -529,7 +529,7 @@ const resumeData = {
       year: "2020.09-2024.06",
       name: {
         en: "Second-Class Postgraduate Academic Scholarship (awarded 4 times).",
-        cn: "（博士）研究生学业奖学金二等，4次",
+        cn: "（博士）研究生二等学业奖学金，4次",
       },
       icon: "graduation-cap",
       print: { en: false, cn: false },
