@@ -3,7 +3,7 @@ const resumeData = {
   config: {
     githubUser: "rorwey",
     scholarId: "RImdKpAAAAAJ",
-    lastUpdate: "2026.03.19",
+    lastUpdate: "2026.03.25",
   },
 
   // === 个人信息 ===
@@ -91,8 +91,8 @@ const resumeData = {
       major: { en: "Computer Science and Technology", cn: "计算机科学与技术" },
       time: "2017.09 - 2020.06",
       advisor: {
-        name_en: ": Assoc. Prof. Famao Ye",
-        name_cn: "叶发茂 副教授",
+        name_en: ":Prof. Famao Ye",
+        name_cn: "叶发茂 教授",
         link: "https://chgcxy.ecut.edu.cn/c6/29/c9247a116265/page.htm",
       },
       focus: {
@@ -529,7 +529,7 @@ const resumeData = {
       year: "2020.09-2024.06",
       name: {
         en: "Second-Class Postgraduate Academic Scholarship (awarded 4 times).",
-        cn: "（博士）研究生二等学业奖学金，4次",
+        cn: "（博士）研究生学业奖学金，一等1次，二等3次",
       },
       icon: "graduation-cap",
       print: { en: false, cn: false },
