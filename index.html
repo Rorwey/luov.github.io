@@ -94,6 +94,183 @@
             opacity: 1 !important;
             visibility: visible !important;
         }
+
+        /* --- 5. 首页增强：身份行 / 研究方向 / 最新动态 --- */
+        #header #home-tagline {
+            margin: 8px 0 0;
+            font-size: 0.92em;
+            letter-spacing: 1px;
+            color: rgba(0, 247, 255, 0.85) !important;
+            text-shadow: 0 1px 6px rgba(0, 247, 255, 0.25);
+        }
+
+        /* 一言前缀：标明「随感」性质，避免与头衔混淆；做成小标签提升可读性，并居中 */
+        #header .hitokoto-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #d6f9ff;
+            background: rgba(0, 247, 255, 0.14);
+            border: 1px solid rgba(0, 247, 255, 0.5);
+            border-radius: 6px;
+            padding: 3px 7px;
+            margin-right: 8px;
+            font-size: 0.74em;
+            letter-spacing: 2px;
+            line-height: 1;
+            font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+            vertical-align: middle;
+        }
+
+        #header #home-interests {
+            margin: 12px auto 2px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            max-width: 480px;
+        }
+        #header #home-interests .chip {
+            font-size: 0.76em;
+            padding: 3px 12px;
+            border: 1px solid rgba(0, 247, 255, 0.35);
+            border-radius: 999px;
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(0, 247, 255, 0.06);
+        }
+
+        #header #home-news {
+            margin: 14px auto 0;
+            max-width: 500px;
+            text-align: left;
+            background: rgba(8, 14, 24, 0.55);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 14px;
+            padding: 12px 16px;
+        }
+        #header #home-news .news-title {
+            font-size: 0.84em;
+            letter-spacing: 3px;
+            color: rgba(0, 247, 255, 0.85);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        #header #home-news .news-item {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-bottom: 6px;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        #header #home-news .news-date {
+            flex: 0 0 auto;
+            color: rgba(0, 247, 255, 0.9);
+            font-variant-numeric: tabular-nums;
+            font-size: 0.95em;
+        }
+        #header #home-news .news-text {
+            flex: 1 1 auto;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+        #header #home-news .news-text strong { color: #fff; font-weight: 500; }
+        #header #home-news .news-text em {
+            font-style: normal;
+            color: rgba(0, 247, 255, 0.9);
+        }
+        #header #home-news .news-more {
+            margin-left: auto;
+            padding-left: 12px;
+            white-space: nowrap;
+            align-self: center;
+            font-size: 0.82em;
+            color: rgba(0, 247, 255, 0.85);
+            text-decoration: none !important;
+            border-bottom: none !important;
+            transition: color 0.3s;
+        }
+        #header #home-news .news-more:hover { color: #fff; }
+
+        /* 宽屏：加宽最新动态面板（左右各约一个图标宽度），并稍微放大字号，避免浪费空间 */
+        @media (min-width: 641px) {
+            #header #home-news {
+                max-width: 640px;
+                padding: 14px 20px;
+            }
+            #header #home-news .news-title { font-size: 0.9em; }
+            #header #home-news .news-item { font-size: 0.96em; }
+            #header #home-news .news-date { font-size: 1em; }
+            #header #home-news .news-more { font-size: 0.88em; }
+        }
+
+        /* 移动端：flex 纵向布局，footer 在页面内容底部，内容少时自然铺满窗口 */
+        @media (max-width: 480px) {
+            #main {
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-top: 0;
+            }
+            #main:before { display: none; }
+
+            #header {
+                flex: 1 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                padding: 8vh 1em 0;
+                top: 0;
+                vertical-align: top;
+            }
+
+            #footer {
+                flex: 0 0 auto;
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 0;
+                padding: 1em 0;
+                animation: none;
+                transform: translateY(0);
+            }
+
+            #header #home-news {
+                width: 100%;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #header #home-news .news-title { font-size: 0.85em; }
+            #header #home-news .news-item { font-size: 0.95em; }
+            #header #home-news .news-date { font-size: 0.95em; }
+            #header #home-news .news-more { font-size: 0.85em; }
+
+            /* 移动端：随感标签竖排，避免占横向宽度 */
+            #home-hitokoto {
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 6px;
+            }
+            #header .hitokoto-label {
+                writing-mode: vertical-rl;
+                letter-spacing: 0;
+                padding: 4px 3px;
+                margin-top: 1px;
+                margin-right: 0;
+                align-items: center;
+                justify-content: center;
+            }
+        }
     </style>
 
     <script>
@@ -116,8 +293,10 @@
 
             <header id="header">
                 <h1>LuoV</h1>
-                <p style="font-family: 'Kaiti', 'KaiTi', serif; margin-top: 10px; font-size: 1.1em;">
-                    <a href="#" id="hitokoto_text" style="text-decoration: none; color: inherit; border-bottom: none; transition: color 0.3s;">
+                <div id="home-tagline"></div>
+                <div id="home-interests"></div>
+                <p id="home-hitokoto" style="font-family: 'Kaiti', 'KaiTi', serif; margin-top: 10px; font-size: 1.1em;">
+                    <span class="hitokoto-label">随感</span><a href="#" id="hitokoto_text" style="text-decoration: none; color: inherit; border-bottom: none; transition: color 0.3s;">
                         Loading...
                     </a>
                 </p>
@@ -151,6 +330,8 @@
                         </li>
                     </ul>
                 </nav>
+
+                <div id="home-news"></div>
             </header>
 
             <footer id="footer">
@@ -164,8 +345,10 @@
         // 1. 更新年份
         document.getElementById('year').innerText = new Date().getFullYear();
 
-        // 2. 防止移动端拖拽影响体验
-        window.ontouchmove = function() { return false; }
+        // 2. 防止移动端拖拽影响体验（仅在宽屏单屏设计下禁用滚动；移动端允许滚动以容纳更多内容）
+        if (window.innerWidth > 480) {
+            window.ontouchmove = function() { return false; };
+        }
         window.onorientationchange = function() { document.body.scrollTop = 0; }
     </script>
 
@@ -183,6 +366,94 @@
                 console.error('一言获取失败:', err);
                 document.getElementById('hitokoto_text').innerText = "Eternal charm, Endless sound.";
             });
+    </script>
+
+    <!-- 复用简历数据驱动首页身份行 / 研究方向 / 最新动态 -->
+    <script src="resume/static/js/data.js"></script>
+    <script>
+    (function () {
+        if (typeof resumeData === 'undefined') return;
+        var d = resumeData;
+        var lang = 'cn';
+
+        // 1. 身份行：姓名 + 身份
+        var tagline = document.getElementById('home-tagline');
+        if (tagline && d.info) {
+            tagline.textContent = d.info.name.cn + ' · ' + d.info.title.cn;
+        }
+
+        // 2. 研究方向 chips（取自博士阶段 focus）
+        var chipsBox = document.getElementById('home-interests');
+        if (chipsBox && d.education) {
+            var phd = d.education.find(function (e) {
+                return (e.degree && e.degree.cn || '').indexOf('博士') >= 0;
+            });
+            var focus = phd && phd.focus ? phd.focus.cn : (d.info.bio.cn || '');
+            var parts = focus.split(/[，,、]/).map(function (s) { return s.trim(); })
+                .filter(Boolean).slice(0, 4);
+            chipsBox.innerHTML = parts.map(function (p) {
+                return '<span class="chip">' + p + '</span>';
+            }).join('');
+        }
+
+        // 3. 最新动态（复用 render.js 合成逻辑，取最新 3 条）
+        var newsList = [];
+        var now = new Date();
+        var monthLimit = 13;
+        function checkRecent(dateStr) {
+            if (!dateStr) return false;
+            var p = dateStr.split('.');
+            var y = parseInt(p[0], 10), m = parseInt(p[1], 10) - 1;
+            var itemDate = new Date(y, m, 1);
+            var diff = (now.getFullYear() - itemDate.getFullYear()) * 12 +
+                (now.getMonth() - itemDate.getMonth());
+            return diff >= 0 && diff <= monthLimit;
+        }
+        function shouldShow(item) { return !item.displayIn || item.displayIn[lang]; }
+        function fmt(dateStr) {
+            var p = dateStr.split('.');
+            return p.length >= 2 ? p[0] + '.' + p[1] : dateStr;
+        }
+
+        (d.publications || []).forEach(function (pub) {
+            if (checkRecent(pub.year) && shouldShow(pub)) {
+                var title = (lang === 'cn' && pub.title_cn) ? pub.title_cn : pub.title;
+                var venue = lang === 'cn' ? (pub.venue.cn || pub.venue.en)
+                    : (pub.venue.en || pub.venue.cn);
+                newsList.push({
+                    date: pub.year,
+                    html: '论文 “<strong>' + title + '</strong>” 被 <em>' + venue + '</em> 录用。'
+                });
+            }
+        });
+        (d.awards || []).forEach(function (a) {
+            if (checkRecent(a.year) && shouldShow(a)) {
+                newsList.push({
+                    date: a.year,
+                    html: '获得 ' + (a.name.cn || a.name.en || '') + '。'
+                });
+            }
+        });
+
+        newsList.sort(function (a, b) { return b.date.localeCompare(a.date); });
+        newsList = newsList.slice(0, 3);
+
+        var box = document.getElementById('home-news');
+        if (box) {
+            if (newsList.length) {
+                box.innerHTML =
+                    '<div class="news-title"><i class="icon solid fa-newspaper"></i> 最 新 动 态</div>' +
+                    newsList.map(function (n, i) {
+                        var more = (i === newsList.length - 1)
+                            ? '<a class="news-more" href="resume">简历 →</a>' : '';
+                        return '<div class="news-item"><span class="news-date">' + fmt(n.date) +
+                            '</span><span class="news-text">' + n.html + '</span>' + more + '</div>';
+                    }).join('');
+            } else {
+                box.style.display = 'none';
+            }
+        }
+    })();
     </script>
 </body>
 </html>
