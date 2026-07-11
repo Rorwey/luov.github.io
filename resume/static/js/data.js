@@ -131,15 +131,15 @@ const resumeData = {
   // === 论文列表 ===
   // displayIn: "all" | "cn" | "en"
   // print: { en: true, cn: false } (可选，控制打印)
-  publications: [
+  publications: [    
     {
-      year: "2026.03.09",
+      year: "2026.05.13",
       title:
-        "FedMMoE: Robust Federated Learning of Multimodal Mixture of Experts （录用）",
+        "FedMMoE: Robust Federated Learning of Multimodal Mixture of Experts",
       venue: {
         en: "International Conference on Computer Supported Cooperative Work in Design (CSCWD 2026)",
       },
-      link: "#",
+      link: "https://ieeexplore.ieee.org/abstract/document/11582502/",
       github: "#",
       tags: [{ type: "CCF", level: "C" }],
       authors: [
