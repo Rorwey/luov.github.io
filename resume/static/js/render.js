@@ -116,8 +116,32 @@
     function render() {
         const info = d.info;
         
-        // 1. Header
-        document.getElementById('avatar-img').src = info.avatar;
+        // 1. Header - 头像（远程优先，失败/超时回退本地）
+        const avatarImg = document.getElementById('avatar-img');
+        if (avatarImg) {
+            const av = info.avatar;
+            const remoteSrc = typeof av === 'string' ? av : (av && av.remote);
+            const localSrc = (av && typeof av === 'object') ? av.local : null;
+
+            if (remoteSrc) {
+                let switched = false;
+                const useLocal = function () {
+                    if (switched || !localSrc) return;       // 已切换或没有本地源，避免死循环
+                    switched = true;
+                    avatarImg.onerror = null;                // 移除监听，本地也失败时不再循环
+                    avatarImg.src = localSrc;
+                };
+                // 超时兜底：远程 5 秒仍未加载成功则改用本地
+                const timer = setTimeout(function () {
+                    if (!avatarImg.complete || avatarImg.naturalWidth === 0) useLocal();
+                }, 5000);
+                avatarImg.onload = function () { clearTimeout(timer); };
+                avatarImg.onerror = useLocal;
+                avatarImg.src = remoteSrc;
+            } else if (localSrc) {
+                avatarImg.src = localSrc;
+            }
+        }
         const displayName = currentLang === 'en' ? `${info.name.en} <span style="font-weight:400; font-size:0.8em;">(${info.name.cn})</span>` : info.name.cn;
         
         // 社交链接渲染逻辑：只要有链接就显示图标，class 控制打印文字

@@ -10,9 +10,11 @@ const resumeData = {
   info: {
     name: { en: "Wei Luo", cn: "罗威" },
     title: { en: "Ph.D. Student", cn: "博士研究生" },
-    // 头像链接
-    avatar:
-      "https://cdn.jsdelivr.net/gh/Rorwey/ImgsHome@main/20220612/avatar.6ev9ip3ahuk0.webp",
+    // 头像链接：远程优先，加载失败/超时则回退到本地
+    avatar: {
+      remote: "https://cdn.jsdelivr.net/gh/Rorwey/ImgsHome@main/20220612/avatar.6ev9ip3ahuk0.webp",
+      local: "../assets/images/avatar.jpg", // 本地真实头像（根目录已有，resume 页面用 ../ 回到根）
+    },
     // 简介：中文设为 null 则不显示
     bio: {
       en: "I am currently a Ph.D. Student at Central South University (CSU), advised by Prof. Deyu Zhang. My research interests lie in Computer Vision and Edge Computing.",
