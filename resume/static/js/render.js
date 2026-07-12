@@ -324,7 +324,7 @@
         const year = new Date().getFullYear();
         const updateText = currentLang === 'cn' ? '最后更新' : 'Last Update';
         document.getElementById('footer-content').innerHTML = `
-            &copy; ${year} LuoV | ${updateText}: ${d.config.lastUpdate}
+            &copy; ${year} <a href="../" style="color: #aaa; text-decoration: none;">LuoV</a> | ${updateText}: ${d.config.lastUpdate}
         `;
         
         if (!document.getElementById('service-list').innerHTML.trim()) {
