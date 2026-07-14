@@ -44,6 +44,43 @@
         return item.displayIn[currentLang];
     }
 
+    // 将各种日期字符串解析为 Date 对象（仅用于比较大小）
+    // 支持: "2026.05.13", "2020.6.23", "2022.12"(仅年月则默认1号), "2020.09-2024.06"(取较新端点)
+    function parseDateToObj(s) {
+        if (!s) return null;
+        let str = s;
+        if (str.indexOf('-') !== -1) {
+            const parts = str.split('-');
+            str = parts[parts.length - 1].trim();
+            if (str.toLowerCase() === 'present' || str === '至今') return new Date();
+        }
+        const p = str.split('.');
+        const y = parseInt(p[0], 10);
+        if (isNaN(y)) return null;
+        const m = p.length >= 2 ? parseInt(p[1], 10) : 1;
+        const day = p.length >= 3 ? parseInt(p[2], 10) : 1;
+        return new Date(y, (m || 1) - 1, day || 1);
+    }
+
+    // 收集页面中所有内容日期的最大值（论文 / 获奖 / 服务）
+    function getLatestContentDate() {
+        const dates = [];
+        const push = ds => { const dt = parseDateToObj(ds); if (dt) dates.push(dt); };
+        (d.publications || []).forEach(p => push(p.year));
+        (d.awards || []).forEach(a => push(a.year));
+        (d.services || []).forEach(cat => (cat.items || []).forEach(it => push(it.year)));
+        if (dates.length === 0) return null;
+        return dates.reduce((mx, cur) => cur > mx ? cur : mx);
+    }
+
+    // 格式化为 YYYY.MM.DD
+    function fmtDate(dt) {
+        const y = dt.getFullYear();
+        const m = String(dt.getMonth() + 1).padStart(2, '0');
+        const day = String(dt.getDate()).padStart(2, '0');
+        return y + '.' + m + '.' + day;
+    }
+
     // 渲染 Tags (通用 + 学校Tag支持)
     function renderTags(tags) {
         if (!tags || tags.length === 0) return "";
@@ -320,11 +357,27 @@
             return '<div class="list-item"><div style="font-weight:700; margin-bottom:5px;">' + getText(cat.title) + '</div><ul class="service-list">' + items.map(function(item) { return '<li>' + getText(item.content) + '</li>'; }).join('') + '</ul></div>';
         }).join('');
 
-        // Footer
+        // Footer - 自动计算最后更新日期
         const year = new Date().getFullYear();
         const updateText = currentLang === 'cn' ? '最后更新' : 'Last Update';
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+        const latestContent = getLatestContentDate();
+        const manual = parseDateToObj(d.config.lastUpdate);
+
+        // 手动日期若不早于页面最新内容日期则优先采用，否则以最新内容日期为准
+        let chosen = null;
+        if (manual && (!latestContent || manual >= latestContent)) chosen = manual;
+        else if (latestContent) chosen = latestContent;
+        else chosen = today;
+        // 避免未来日期；且至少标记为本月（页面是当前月份仍在维护的）
+        if (chosen > today) chosen = today;
+        if (chosen < monthStart) chosen = monthStart;
+
         document.getElementById('footer-content').innerHTML = `
-            &copy; ${year} <a href="../" style="color: #aaa; text-decoration: none;">LuoV</a> | ${updateText}: ${d.config.lastUpdate}
+            &copy; ${year} <a href="../" style="color: #aaa; text-decoration: none;">LuoV</a> | ${updateText}: ${fmtDate(chosen)}
         `;
         
         if (!document.getElementById('service-list').innerHTML.trim()) {
